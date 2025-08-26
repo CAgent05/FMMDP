@@ -1,0 +1,42 @@
+================================================================================
+RESOURCE USAGE SUMMARY REPORT
+================================================================================
+
+Experiment Duration: 219.9 seconds (3.7 minutes)
+Total Monitoring Samples: 542
+Start Time: 2025-07-22T14:30:35.507833
+End Time: 2025-07-22T14:34:15.390334
+
+GPU UTILIZATION:
+  Average: 19.3%
+  Peak: 98.0%
+  Minimum: 0.0%
+  Standard Deviation: 34.3%
+
+GPU MEMORY USAGE:
+  Peak Usage: 24080.0 MB
+  Average Usage: 20309.5 MB
+  Minimum Usage: 10.0 MB
+
+PYTORCH GPU MEMORY:
+  Peak Allocated: 1210.1 MB
+  Peak Reserved: 23742.0 MB
+  Memory Efficiency: 0.007
+
+POWER CONSUMPTION:
+  Average Power: 171.5 W
+  Peak Power: 208.2 W
+  Total Energy: 129.13 Wh (0.1291 kWh)
+
+ENVIRONMENTAL IMPACT:
+  Carbon Emission: 0.0155 kg CO₂
+  Equivalent to driving: 0.04 miles
+  Equivalent to tree absorption: 0.0 tree-months
+
+CPU & MEMORY:
+  Average CPU Usage: 5.3%
+  Peak CPU Usage: 99.6%
+  Average Memory Usage: 1344.7 MB
+  Peak Memory Usage: 1351.4 MB
+
+================================================================================

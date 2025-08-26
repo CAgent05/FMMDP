@@ -1,0 +1,44 @@
+{
+  "experiment_info": {
+    "total_duration_seconds": 483.850430727005,
+    "total_samples": 592,
+    "start_time": "2025-07-22T11:07:25.109475",
+    "end_time": "2025-07-22T11:15:28.909528"
+  },
+  "torch_metrics": {
+    "max_allocated_mb": 13977.80908203125,
+    "max_reserved_mb": 23758.0,
+    "avg_efficiency": 0.04922652293612668
+  },
+  "cpu_memory": {
+    "cpu_avg_percent": 8.640033783783787,
+    "cpu_max_percent": 99.7,
+    "memory_avg_mb": 1311.8730600717906,
+    "memory_peak_mb": 1320.453125
+  },
+  "gpu_metrics": {
+    "utilization": {
+      "avg": 58.19932432432432,
+      "max": 99.0,
+      "min": 0.0,
+      "std": 41.48734909196536
+    },
+    "memory_mb": {
+      "peak": 24096.0,
+      "avg": 23274.287162162163,
+      "min": 0
+    }
+  },
+  "power_consumption": {
+    "avg_watts": 216.1164020270272,
+    "max_watts": 274.15,
+    "total_energy_wh": 177.69570833333347,
+    "total_energy_kwh": 0.17769570833333348
+  },
+  "carbon_footprint": {
+    "total_energy_kwh": 0.03553914166666665,
+    "carbon_emission_kg": 0.02132348499999999,
+    "equivalent_car_miles": 0.0527809034653465,
+    "equivalent_tree_months": 0.011753873220027555
+  }
+}
