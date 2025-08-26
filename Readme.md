@@ -1,6 +1,6 @@
 # FMMDP
 
-This is the algorithm code and experimental results for the paper **FMMDP: Failure Monitoring Approach for Markov Decision Process**
+This is the algorithm code and experimental results for the paper **FMMDP: Failure Monitoring Approach for DNN-based Markov Decision Process**
 
 This work is a further extension of **DRLFailureMonitor**, which leverages the representational capabilities of deep neural networks to expand the original framework, which was solely focused on **Deep Reinforcement Learning Failure Monitoring**, to a broader range of **MDP** tasks.
 
