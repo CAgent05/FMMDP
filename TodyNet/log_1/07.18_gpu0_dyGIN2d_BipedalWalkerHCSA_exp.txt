@@ -1,0 +1,1716 @@
+epochs 1001, lr 0.0001, weight_decay 0.0001
+num_nodes 28, seq_length 20, num_classes 2
+date 07.18, gpu 0, archdyGIN2d
+INIT Epoch 0 - CPU: 14.4%, RAM: 12.37GB (21.5%), GPU Mem: 0.03GB, GPU Reserved: 0.03GB, GPU Max: 0.03GB, GPU Util: 10%
+PRE_TRAIN Epoch 0 - CPU: 7.5%, RAM: 12.41GB (21.6%), GPU Mem: 0.03GB, GPU Reserved: 0.03GB, GPU Max: 0.03GB, GPU Util: 0%
+epochs 1001, lr 0.0001, weight_decay 0.0001
+num_nodes 28, seq_length 20, num_classes 2
+date 07.18, gpu 0, archdyGIN2d
+INIT Epoch 0 - CPU: 14.5%, RAM: 12.33GB (21.4%), GPU Mem: 0.03GB, GPU Reserved: 0.03GB, GPU Max: 0.03GB, GPU Util: 5%
+PRE_TRAIN Epoch 0 - CPU: 7.9%, RAM: 12.37GB (21.5%), GPU Mem: 0.03GB, GPU Reserved: 0.03GB, GPU Max: 0.03GB, GPU Util: 1%
+TRAIN, epoch 0, loss 0.6610398035049438, acc tensor([69.2000], device='cuda:0')
+POST_TRAIN Epoch 0 - CPU: 8.0%, RAM: 13.02GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+VAL, loss 0.6817915315628051, acc tensor([68.3000], device='cuda:0')
+POST_VAL Epoch 0 - CPU: 9.6%, RAM: 13.03GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 84%
+TRAIN, epoch 1, loss 0.6265845947265625, acc tensor([68.9500], device='cuda:0')
+VAL, loss 0.6753353571891785, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 2, loss 0.5766968479156495, acc tensor([72.4500], device='cuda:0')
+VAL, loss 0.6603343601226807, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 3, loss 0.5012890601158142, acc tensor([89.7500], device='cuda:0')
+VAL, loss 0.6212474536895752, acc tensor([86.0000], device='cuda:0')
+TRAIN, epoch 4, loss 0.3982133622169495, acc tensor([97.9500], device='cuda:0')
+VAL, loss 0.530416925907135, acc tensor([98.4000], device='cuda:0')
+PRE_TRAIN Epoch 5 - CPU: 8.5%, RAM: 13.03GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 5, loss 0.2881162329912186, acc tensor([99.4000], device='cuda:0')
+POST_TRAIN Epoch 5 - CPU: 7.7%, RAM: 13.03GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.37865576887130736, acc tensor([99.0000], device='cuda:0')
+POST_VAL Epoch 5 - CPU: 8.3%, RAM: 13.03GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 96%
+TRAIN, epoch 6, loss 0.20265580677986145, acc tensor([99.5500], device='cuda:0')
+VAL, loss 0.22335042357444762, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 7, loss 0.14722452688217164, acc tensor([99.6000], device='cuda:0')
+VAL, loss 0.1257196422815323, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 8, loss 0.11320669031143188, acc tensor([99.6000], device='cuda:0')
+VAL, loss 0.07971244674921035, acc tensor([99.4000], device='cuda:0')
+TRAIN, epoch 9, loss 0.0915981284379959, acc tensor([99.7000], device='cuda:0')
+VAL, loss 0.0595304309129715, acc tensor([99.4000], device='cuda:0')
+PRE_TRAIN Epoch 10 - CPU: 7.8%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 10, loss 0.07710259300470353, acc tensor([99.6500], device='cuda:0')
+POST_TRAIN Epoch 10 - CPU: 8.6%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.04970848250389099, acc tensor([99.4000], device='cuda:0')
+POST_VAL Epoch 10 - CPU: 8.3%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 11, loss 0.06667044377326965, acc tensor([99.7000], device='cuda:0')
+VAL, loss 0.04436275142431259, acc tensor([99.4000], device='cuda:0')
+TRAIN, epoch 12, loss 0.05749556750059128, acc tensor([99.7000], device='cuda:0')
+VAL, loss 0.04160237219929695, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 13, loss 0.051409766733646396, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.039594636827707294, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 14, loss 0.04657110747694969, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.03821491977572441, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 15 - CPU: 8.5%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 15, loss 0.04364662677049637, acc tensor([99.8000], device='cuda:0')
+POST_TRAIN Epoch 15 - CPU: 7.7%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.036692792862653735, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 15 - CPU: 8.6%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 16, loss 0.03935187351703644, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.03510851967334747, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 17, loss 0.03754912355542183, acc tensor([99.8000], device='cuda:0')
+VAL, loss 0.03332914045453072, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 18, loss 0.034998054444789886, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.03179704949259758, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 19, loss 0.03253098204731941, acc tensor([99.8000], device='cuda:0')
+VAL, loss 0.03021684014797211, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 20 - CPU: 7.7%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 20, loss 0.03152459877729416, acc tensor([99.8000], device='cuda:0')
+POST_TRAIN Epoch 20 - CPU: 7.6%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.028795728474855422, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 20 - CPU: 8.4%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 21, loss 0.02905408278107643, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.02758812928199768, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 22, loss 0.027614211171865462, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.026211501464247704, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 23, loss 0.026782169759273527, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.025010916128754616, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 24, loss 0.025088604554533957, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.023935774743556976, acc tensor([99.6000], device='cuda:0')
+PRE_TRAIN Epoch 25 - CPU: 8.4%, RAM: 13.12GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 25, loss 0.024073484614491464, acc tensor([99.9000], device='cuda:0')
+POST_TRAIN Epoch 25 - CPU: 7.7%, RAM: 13.11GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.023003747090697288, acc tensor([99.6000], device='cuda:0')
+POST_VAL Epoch 25 - CPU: 8.1%, RAM: 13.11GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 26, loss 0.023072453439235686, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.022087154895067216, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 27, loss 0.021852732002735138, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.02122630761563778, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 28, loss 0.021819381654262542, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.020497852593660354, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 29, loss 0.02054360553622246, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.019803459003567697, acc tensor([99.6000], device='cuda:0')
+PRE_TRAIN Epoch 30 - CPU: 7.8%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 30, loss 0.01960235784947872, acc tensor([99.9000], device='cuda:0')
+POST_TRAIN Epoch 30 - CPU: 7.7%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.019092010349035262, acc tensor([99.6000], device='cuda:0')
+POST_VAL Epoch 30 - CPU: 8.1%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 31, loss 0.019074104383587837, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01836836253106594, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 32, loss 0.01802865010499954, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01772889395058155, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 33, loss 0.017348017811775206, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.017097888559103012, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 34, loss 0.01659666635841131, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.0165181715041399, acc tensor([99.6000], device='cuda:0')
+PRE_TRAIN Epoch 35 - CPU: 8.4%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 35, loss 0.016188649177551268, acc tensor([99.9000], device='cuda:0')
+POST_TRAIN Epoch 35 - CPU: 7.8%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.015978806182742118, acc tensor([99.6000], device='cuda:0')
+POST_VAL Epoch 35 - CPU: 8.1%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 36, loss 0.015801707692444326, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01556621927767992, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 37, loss 0.015605499982833863, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.015173944316804409, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 38, loss 0.01503855910152197, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.014764920189976691, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 39, loss 0.01445599065721035, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.014415452100336552, acc tensor([99.6000], device='cuda:0')
+PRE_TRAIN Epoch 40 - CPU: 7.7%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 40, loss 0.01439612378180027, acc tensor([99.9500], device='cuda:0')
+POST_TRAIN Epoch 40 - CPU: 7.7%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.014004728361964225, acc tensor([99.7000], device='cuda:0')
+POST_VAL Epoch 40 - CPU: 8.3%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 41, loss 0.013379833534359932, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.013618357442319394, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 42, loss 0.01324163620173931, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.01328638919442892, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 43, loss 0.012358498878777028, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.012894787944853306, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 44, loss 0.01253625177592039, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.012601270720362663, acc tensor([99.8000], device='cuda:0')
+PRE_TRAIN Epoch 45 - CPU: 8.4%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 45, loss 0.011899980545043945, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 45 - CPU: 7.6%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.012302388727664948, acc tensor([99.8000], device='cuda:0')
+POST_VAL Epoch 45 - CPU: 8.0%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 46, loss 0.011778434559702873, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.012000059798359872, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 47, loss 0.011563604786992074, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.011700297385454177, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 48, loss 0.01095426645129919, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.011464223146438598, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 49, loss 0.01089561465382576, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.011207444496452808, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 50 - CPU: 7.7%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 50, loss 0.010585473276674747, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 50 - CPU: 8.3%, RAM: 13.14GB (22.8%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.010909151710569859, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 50 - CPU: 13.2%, RAM: 13.15GB (22.8%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 51, loss 0.01026818522810936, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010681394599378108, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 52, loss 0.009888466067612171, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010475761368870734, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 53, loss 0.009757073692977429, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010300272196531296, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 54, loss 0.009315999127924442, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010116973340511322, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 55 - CPU: 8.1%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 55, loss 0.009588467746973037, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 55 - CPU: 7.6%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.009921712443232537, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 55 - CPU: 8.3%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 56, loss 0.009060498058795928, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009735184617340565, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 57, loss 0.009050676234066485, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009564798045903444, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 58, loss 0.008805265180766582, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009359203781932592, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 59, loss 0.008485948272049426, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00920347886160016, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 60 - CPU: 7.7%, RAM: 13.04GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 60, loss 0.008227425664663314, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 60 - CPU: 9.8%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.009022804778069257, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 60 - CPU: 8.1%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 61, loss 0.00812488480657339, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00888784359022975, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 62, loss 0.007792849570512772, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008763815138489008, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 63, loss 0.00788112147897482, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00867151566967368, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 64, loss 0.007552722305059433, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008544782847166062, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 65 - CPU: 7.8%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 65, loss 0.0074605317525565625, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 65 - CPU: 8.6%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.008433086175471545, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 65 - CPU: 8.3%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 66, loss 0.00717055519670248, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008316534195095301, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 67, loss 0.007114310950040817, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008200866840779782, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 68, loss 0.006873441658914089, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008102569073438644, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 69, loss 0.0067266210317611696, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008016998279839755, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 70 - CPU: 7.8%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 70, loss 0.0067036948725581165, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 70 - CPU: 9.8%, RAM: 13.07GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.007934912245720625, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 70 - CPU: 8.8%, RAM: 13.07GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 71, loss 0.0065987566411495205, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007840229671448469, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 72, loss 0.0064826346598565576, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007739329423755407, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 73, loss 0.006493403524160385, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007622225020080805, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 74, loss 0.006281184040009976, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0075067407079041, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 75 - CPU: 7.7%, RAM: 13.07GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 75, loss 0.006029387556016445, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 75 - CPU: 7.6%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.007415250513702631, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 75 - CPU: 14.0%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 76, loss 0.006411143731325865, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007330670848488808, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 77, loss 0.005991254277527332, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007271374333649874, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 78, loss 0.005749319028109312, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007182974882423878, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 79, loss 0.005629183974117041, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007108983114361763, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 80 - CPU: 7.9%, RAM: 13.15GB (22.8%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 80, loss 0.005559642527252435, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 80 - CPU: 9.2%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.00702028713747859, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 80 - CPU: 8.3%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 81, loss 0.0055792791470885275, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0069260141961276535, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 82, loss 0.005260911304503679, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006844298407435417, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 83, loss 0.005494325283914804, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006761845037341118, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 84, loss 0.005223974425345659, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0067135153934359555, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 85 - CPU: 7.7%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 85, loss 0.005158936619758606, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 85 - CPU: 7.7%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.0066613444462418556, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 85 - CPU: 8.3%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 86, loss 0.005123785652220249, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006616895686835051, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 87, loss 0.004872271150350571, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006542357850819826, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 88, loss 0.0050206734910607335, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006486025717109442, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 89, loss 0.004823938090354204, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006396264094859361, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 90 - CPU: 8.4%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 90, loss 0.004800812996923923, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 90 - CPU: 7.8%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.006320106644183397, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 90 - CPU: 8.3%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 91, loss 0.0046905971430242065, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006248423051089048, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 92, loss 0.004626977004110813, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006195008791983128, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 93, loss 0.004618810992687941, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006138763427734375, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 94, loss 0.004515748001635075, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006079878915101289, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 95 - CPU: 7.7%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 96%
+TRAIN, epoch 95, loss 0.004430860500782728, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 95 - CPU: 7.6%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.006075186401605606, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 95 - CPU: 8.3%, RAM: 13.06GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 96, loss 0.004402966920286417, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006070735853165388, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 97, loss 0.004399137530475855, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006050217490643263, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 98, loss 0.004440939839929342, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006022781953215599, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 99, loss 0.004284528646618128, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00600458350777626, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 100 - CPU: 8.5%, RAM: 13.07GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 100, loss 0.004310814026743173, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 100 - CPU: 7.7%, RAM: 13.08GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.00598029487207532, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 100 - CPU: 8.1%, RAM: 13.08GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 101, loss 0.004213048296049237, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005953377574682236, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 102, loss 0.0041725834310054775, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005927551487460733, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 103, loss 0.004196349656209349, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0059113614130765196, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 104, loss 0.0041107720024883745, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005867496913298965, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 105 - CPU: 7.8%, RAM: 13.08GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 105, loss 0.004109857302159071, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 105 - CPU: 8.0%, RAM: 13.08GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.005861089523881674, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 105 - CPU: 11.8%, RAM: 13.08GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 98%
+TRAIN, epoch 106, loss 0.004090395528823137, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005831581993028521, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 107, loss 0.0041410747468471525, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005820494471117854, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 108, loss 0.003939567342400551, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005805233452469111, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 109, loss 0.004013630878180265, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0057585412301123145, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 110 - CPU: 9.9%, RAM: 13.07GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+TRAIN, epoch 110, loss 0.00397387009114027, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 110 - CPU: 7.9%, RAM: 13.08GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+VAL, loss 0.005734533796086907, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 110 - CPU: 8.5%, RAM: 13.08GB (22.7%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 97%
+TRAIN, epoch 111, loss 0.00379645274579525, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005712864380329847, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 112, loss 0.003819353798404336, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005692112693563104, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 113, loss 0.003959315396845341, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005664568699896335, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 114, loss 0.0039086187928915024, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0056490862313658, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 115 - CPU: 7.9%, RAM: 13.05GB (22.6%), GPU Mem: 0.05GB, GPU Reserved: 7.89GB, GPU Max: 4.66GB, GPU Util: 99%
+epochs 100, lr 0.0001, weight_decay 0.0001
+num_nodes 28, seq_length 20, num_classes 2
+date 07.18, gpu 0, archdyGIN2d
+INIT Epoch 0:
+  CPU: 15.5% @ 1460MHz, Load: 2.02
+  RAM: 12.53GB (21.8%)
+  GPU Memory: 0.03GB (0.2%), Peak: 0.03GB
+  GPU Utilization: 0%, Temp: 32°C, Power: 10.5W
+
+PRE_TRAIN Epoch 0:
+  CPU: 7.9% @ 1546MHz, Load: 2.02
+  RAM: 12.56GB (21.8%)
+  GPU Memory: 0.03GB (0.2%), Peak: 0.03GB
+  GPU Utilization: 1%, Temp: 33°C, Power: 21.2W
+
+TRAIN, epoch 0, loss 0.6624842491149903, acc tensor([68.8500], device='cuda:0')
+POST_TRAIN Epoch 0:
+  CPU: 8.3% @ 1315MHz, Load: 2.02
+  RAM: 13.21GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 37°C, Power: 173.3W
+
+VAL, loss 0.6816658325195313, acc tensor([68.3000], device='cuda:0')
+POST_VAL Epoch 0:
+  CPU: 7.8% @ 1176MHz, Load: 2.02
+  RAM: 13.22GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 84%, Temp: 43°C, Power: 192.1W
+
+TRAIN, epoch 1, loss 0.6293259482383728, acc tensor([68.8500], device='cuda:0')
+VAL, loss 0.6752707223892211, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 2, loss 0.5836033749580384, acc tensor([71.5000], device='cuda:0')
+VAL, loss 0.6611827230453491, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 3, loss 0.5148094685077668, acc tensor([85.1500], device='cuda:0')
+VAL, loss 0.6258296751976014, acc tensor([80.4000], device='cuda:0')
+TRAIN, epoch 4, loss 0.41960501623153684, acc tensor([95.5000], device='cuda:0')
+VAL, loss 0.5434262456893921, acc tensor([95.4000], device='cuda:0')
+PRE_TRAIN Epoch 5:
+  CPU: 7.8% @ 1225MHz, Load: 2.02
+  RAM: 13.21GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 46°C, Power: 219.6W
+
+TRAIN, epoch 5, loss 0.3110651319026947, acc tensor([98.3000], device='cuda:0')
+POST_TRAIN Epoch 5:
+  CPU: 9.4% @ 1431MHz, Load: 2.02
+  RAM: 13.24GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 44°C, Power: 218.7W
+
+VAL, loss 0.39858402037620544, acc tensor([97.7000], device='cuda:0')
+POST_VAL Epoch 5:
+  CPU: 7.2% @ 1068MHz, Load: 2.02
+  RAM: 13.22GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 46°C, Power: 218.4W
+
+TRAIN, epoch 6, loss 0.2198786940574646, acc tensor([99.1000], device='cuda:0')
+VAL, loss 0.2406572241783142, acc tensor([99.0000], device='cuda:0')
+TRAIN, epoch 7, loss 0.15741123807430268, acc tensor([99.3000], device='cuda:0')
+VAL, loss 0.13524363934993744, acc tensor([99.0000], device='cuda:0')
+TRAIN, epoch 8, loss 0.11933057677745819, acc tensor([99.3500], device='cuda:0')
+VAL, loss 0.08405524522066116, acc tensor([99.0000], device='cuda:0')
+TRAIN, epoch 9, loss 0.09550661045312882, acc tensor([99.4500], device='cuda:0')
+VAL, loss 0.06157938283681869, acc tensor([99.1000], device='cuda:0')
+PRE_TRAIN Epoch 10:
+  CPU: 7.5% @ 1229MHz, Load: 2.02
+  RAM: 13.21GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 47°C, Power: 220.3W
+
+TRAIN, epoch 10, loss 0.07991029804944992, acc tensor([99.5500], device='cuda:0')
+POST_TRAIN Epoch 10:
+  CPU: 7.4% @ 1444MHz, Load: 2.02
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 45°C, Power: 219.5W
+
+VAL, loss 0.0510492602288723, acc tensor([99.2000], device='cuda:0')
+POST_VAL Epoch 10:
+  CPU: 7.7% @ 1358MHz, Load: 2.02
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 96%, Temp: 47°C, Power: 219.6W
+
+TRAIN, epoch 11, loss 0.06914009085297584, acc tensor([99.6000], device='cuda:0')
+VAL, loss 0.0455687301158905, acc tensor([99.2000], device='cuda:0')
+TRAIN, epoch 12, loss 0.05929408103227615, acc tensor([99.6500], device='cuda:0')
+VAL, loss 0.042919539034366606, acc tensor([99.3000], device='cuda:0')
+TRAIN, epoch 13, loss 0.052981539338827134, acc tensor([99.7000], device='cuda:0')
+VAL, loss 0.04118636548519135, acc tensor([99.4000], device='cuda:0')
+TRAIN, epoch 14, loss 0.04795253121852875, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.040239216178655626, acc tensor([99.4000], device='cuda:0')
+PRE_TRAIN Epoch 15:
+  CPU: 7.9% @ 1258MHz, Load: 2.10
+  RAM: 13.15GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 49°C, Power: 220.4W
+
+TRAIN, epoch 15, loss 0.04516752541065216, acc tensor([99.7500], device='cuda:0')
+POST_TRAIN Epoch 15:
+  CPU: 10.7% @ 1297MHz, Load: 2.10
+  RAM: 13.16GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 48°C, Power: 219.2W
+
+VAL, loss 0.039218975454568865, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 15:
+  CPU: 10.7% @ 1503MHz, Load: 2.10
+  RAM: 13.15GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 48°C, Power: 218.9W
+
+TRAIN, epoch 16, loss 0.040721756428480145, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.0381497837305069, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 17, loss 0.03893340575695038, acc tensor([99.8000], device='cuda:0')
+VAL, loss 0.03701121923327446, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 18, loss 0.03647352054715156, acc tensor([99.8000], device='cuda:0')
+VAL, loss 0.03595671528577805, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 19, loss 0.03381307171285152, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.03465030878782272, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 20:
+  CPU: 7.7% @ 1792MHz, Load: 2.09
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 49°C, Power: 220.6W
+
+TRAIN, epoch 20, loss 0.032591007634997365, acc tensor([99.8000], device='cuda:0')
+POST_TRAIN Epoch 20:
+  CPU: 7.7% @ 1194MHz, Load: 2.08
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 50°C, Power: 220.7W
+
+VAL, loss 0.03330052599310875, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 20:
+  CPU: 7.7% @ 1340MHz, Load: 2.08
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 51°C, Power: 220.8W
+
+TRAIN, epoch 21, loss 0.03049390310049057, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.03205947679281235, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 22, loss 0.02875119987130165, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.030560001045465468, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 23, loss 0.028270263060927392, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.02932770189642906, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 24, loss 0.026750550746917724, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.028137598246335983, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 25:
+  CPU: 7.7% @ 1790MHz, Load: 2.08
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 51°C, Power: 221.6W
+
+TRAIN, epoch 25, loss 0.025670576080679894, acc tensor([99.8500], device='cuda:0')
+POST_TRAIN Epoch 25:
+  CPU: 9.8% @ 1163MHz, Load: 2.08
+  RAM: 13.15GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 50°C, Power: 220.5W
+
+VAL, loss 0.027145227566361427, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 25:
+  CPU: 7.5% @ 1623MHz, Load: 2.08
+  RAM: 13.15GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 51°C, Power: 220.3W
+
+TRAIN, epoch 26, loss 0.024402197629213335, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.026217072039842606, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 27, loss 0.023277853608131407, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.025280037075281144, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 28, loss 0.023443340703845024, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.024472484588623045, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 29, loss 0.021814854726195335, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.02370386378467083, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 30:
+  CPU: 7.6% @ 1207MHz, Load: 2.08
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 53°C, Power: 222.0W
+
+TRAIN, epoch 30, loss 0.02098281554877758, acc tensor([99.8500], device='cuda:0')
+POST_TRAIN Epoch 30:
+  CPU: 7.5% @ 1232MHz, Load: 2.07
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 51°C, Power: 221.8W
+
+VAL, loss 0.02282447724044323, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 30:
+  CPU: 7.4% @ 1256MHz, Load: 2.07
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 52°C, Power: 222.1W
+
+TRAIN, epoch 31, loss 0.020173079565167427, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.021969626024365425, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 32, loss 0.019312312483787536, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.021142728134989738, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 33, loss 0.018494869276881216, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.020361253887414933, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 34, loss 0.017817781925201417, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01966286104917526, acc tensor([99.6000], device='cuda:0')
+PRE_TRAIN Epoch 35:
+  CPU: 7.4% @ 1190MHz, Load: 2.07
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 53°C, Power: 223.7W
+
+TRAIN, epoch 35, loss 0.01753617724776268, acc tensor([99.9000], device='cuda:0')
+POST_TRAIN Epoch 35:
+  CPU: 9.5% @ 1217MHz, Load: 2.14
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 52°C, Power: 222.9W
+
+VAL, loss 0.018981382995843888, acc tensor([99.6000], device='cuda:0')
+POST_VAL Epoch 35:
+  CPU: 7.7% @ 1343MHz, Load: 2.14
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 54°C, Power: 222.9W
+
+TRAIN, epoch 36, loss 0.016526325181126594, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01837728650867939, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 37, loss 0.016425308227539064, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01784323513507843, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 38, loss 0.016326612174510955, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01722319570928812, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 39, loss 0.015224328622221946, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01670037030428648, acc tensor([99.6000], device='cuda:0')
+PRE_TRAIN Epoch 40:
+  CPU: 7.4% @ 1163MHz, Load: 2.21
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 56°C, Power: 224.0W
+
+TRAIN, epoch 40, loss 0.014901219472289085, acc tensor([99.8500], device='cuda:0')
+POST_TRAIN Epoch 40:
+  CPU: 7.4% @ 1143MHz, Load: 2.21
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 55°C, Power: 223.0W
+
+VAL, loss 0.016116921931505202, acc tensor([99.7000], device='cuda:0')
+POST_VAL Epoch 40:
+  CPU: 7.2% @ 1232MHz, Load: 2.21
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 96%, Temp: 56°C, Power: 223.2W
+
+TRAIN, epoch 41, loss 0.014323271222412587, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01556875852495432, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 42, loss 0.013780213341116905, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.015138143800199032, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 43, loss 0.013023866131901742, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.014685335710644723, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 44, loss 0.013021028593182564, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.014285485714673996, acc tensor([99.7000], device='cuda:0')
+PRE_TRAIN Epoch 45:
+  CPU: 7.5% @ 1270MHz, Load: 2.20
+  RAM: 13.17GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 56°C, Power: 224.9W
+
+TRAIN, epoch 45, loss 0.012267988994717599, acc tensor([99.9500], device='cuda:0')
+POST_TRAIN Epoch 45:
+  CPU: 9.2% @ 1157MHz, Load: 2.20
+  RAM: 13.14GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 56°C, Power: 224.0W
+
+VAL, loss 0.013881476640701294, acc tensor([99.7000], device='cuda:0')
+POST_VAL Epoch 45:
+  CPU: 7.2% @ 1132MHz, Load: 2.20
+  RAM: 13.14GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 56°C, Power: 224.2W
+
+TRAIN, epoch 46, loss 0.012097904779016972, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.013547811061143875, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 47, loss 0.011959116451442242, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.013196748435497284, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 48, loss 0.011459819346666336, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.012889455489814282, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 49, loss 0.011365487709641457, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.012549740180373192, acc tensor([99.7000], device='cuda:0')
+PRE_TRAIN Epoch 50:
+  CPU: 7.9% @ 1271MHz, Load: 2.18
+  RAM: 13.13GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 56°C, Power: 225.5W
+
+TRAIN, epoch 50, loss 0.011025985926389694, acc tensor([99.9500], device='cuda:0')
+POST_TRAIN Epoch 50:
+  CPU: 7.4% @ 1434MHz, Load: 2.18
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 56°C, Power: 224.9W
+
+VAL, loss 0.012159070514142513, acc tensor([99.7000], device='cuda:0')
+POST_VAL Epoch 50:
+  CPU: 7.7% @ 1400MHz, Load: 2.18
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 58°C, Power: 225.0W
+
+TRAIN, epoch 51, loss 0.010562724985182285, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.01184598508477211, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 52, loss 0.010154198169708252, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.01154248484969139, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 53, loss 0.010081734985113144, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.011249705776572227, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 54, loss 0.009579503923654557, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010987721279263497, acc tensor([99.8000], device='cuda:0')
+PRE_TRAIN Epoch 55:
+  CPU: 7.6% @ 1551MHz, Load: 2.16
+  RAM: 13.22GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 58°C, Power: 226.2W
+
+TRAIN, epoch 55, loss 0.009805857136845588, acc tensor([99.9500], device='cuda:0')
+POST_TRAIN Epoch 55:
+  CPU: 9.0% @ 1502MHz, Load: 2.16
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 58°C, Power: 225.2W
+
+VAL, loss 0.010705572932958603, acc tensor([99.8000], device='cuda:0')
+POST_VAL Epoch 55:
+  CPU: 7.6% @ 1295MHz, Load: 2.16
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 58°C, Power: 225.1W
+
+TRAIN, epoch 56, loss 0.009148127272725105, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010482310608029366, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 57, loss 0.009281628940254449, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010285686757415534, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 58, loss 0.008951152816414834, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.01004502360895276, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 59, loss 0.008675825893878936, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.009855847835540771, acc tensor([99.8000], device='cuda:0')
+PRE_TRAIN Epoch 60:
+  CPU: 7.4% @ 1174MHz, Load: 2.15
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 59°C, Power: 226.8W
+
+TRAIN, epoch 60, loss 0.008176585532724857, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 60:
+  CPU: 7.5% @ 1408MHz, Load: 2.15
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 59°C, Power: 226.4W
+
+VAL, loss 0.0097047775760293, acc tensor([99.8000], device='cuda:0')
+POST_VAL Epoch 60:
+  CPU: 7.2% @ 1238MHz, Load: 2.15
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 59°C, Power: 226.4W
+
+TRAIN, epoch 61, loss 0.008192137636244297, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00952342227101326, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 62, loss 0.008021861039102077, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00935238280892372, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 63, loss 0.007886617608368398, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009214632581919431, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 64, loss 0.007657074522227049, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009071383334696292, acc tensor([99.8000], device='cuda:0')
+PRE_TRAIN Epoch 65:
+  CPU: 7.7% @ 1261MHz, Load: 2.14
+  RAM: 13.23GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 61°C, Power: 227.7W
+
+TRAIN, epoch 65, loss 0.007578796040266752, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 65:
+  CPU: 8.4% @ 1148MHz, Load: 2.14
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 59°C, Power: 227.0W
+
+VAL, loss 0.00892066065594554, acc tensor([99.8000], device='cuda:0')
+POST_VAL Epoch 65:
+  CPU: 7.7% @ 1180MHz, Load: 2.14
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 61°C, Power: 227.2W
+
+TRAIN, epoch 66, loss 0.007149938430637121, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008781507093459368, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 67, loss 0.007171501606702805, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00864732364192605, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 68, loss 0.007008606169372797, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008519353941082955, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 69, loss 0.006739530138671398, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008414695717394352, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 70:
+  CPU: 7.4% @ 1298MHz, Load: 2.13
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 61°C, Power: 228.9W
+
+TRAIN, epoch 70, loss 0.006719736706465483, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 70:
+  CPU: 7.4% @ 1187MHz, Load: 2.13
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 61°C, Power: 228.3W
+
+VAL, loss 0.008293237559497357, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 70:
+  CPU: 7.5% @ 1189MHz, Load: 2.13
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 62°C, Power: 228.1W
+
+TRAIN, epoch 71, loss 0.006582621939480305, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00815730794519186, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 72, loss 0.00657314994558692, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007997467767447234, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 73, loss 0.006518124543130398, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007825783517211676, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 74, loss 0.006301631212234497, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007707615934312344, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 75:
+  CPU: 7.8% @ 1785MHz, Load: 2.12
+  RAM: 13.23GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 63°C, Power: 229.2W
+
+TRAIN, epoch 75, loss 0.005991430833935738, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 75:
+  CPU: 8.1% @ 1207MHz, Load: 2.12
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 61°C, Power: 228.6W
+
+VAL, loss 0.007624492283910513, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 75:
+  CPU: 7.2% @ 1276MHz, Load: 2.12
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 96%, Temp: 63°C, Power: 229.3W
+
+TRAIN, epoch 76, loss 0.006425884161144495, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007545040141791105, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 77, loss 0.006028707988560199, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0074778211638331414, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 78, loss 0.005645485874265432, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007374869309365749, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 79, loss 0.0056280062049627304, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007290911126881838, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 80:
+  CPU: 7.4% @ 1306MHz, Load: 2.11
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 63°C, Power: 230.3W
+
+TRAIN, epoch 80, loss 0.0054378737509250645, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 80:
+  CPU: 7.4% @ 1194MHz, Load: 2.11
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 62°C, Power: 229.9W
+
+VAL, loss 0.007187383528798818, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 80:
+  CPU: 7.5% @ 1106MHz, Load: 2.11
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 62°C, Power: 229.8W
+
+TRAIN, epoch 81, loss 0.005628144513815642, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007086352955549956, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 82, loss 0.005452497601509094, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007006963770836591, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 83, loss 0.005413697093725204, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006928670026361943, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 84, loss 0.005112465068697929, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006859626080840826, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 85:
+  CPU: 7.8% @ 1252MHz, Load: 2.10
+  RAM: 13.12GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 99%, Temp: 64°C, Power: 230.4W
+
+TRAIN, epoch 85, loss 0.0050240690223872665, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 85:
+  CPU: 7.4% @ 1351MHz, Load: 2.10
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 63°C, Power: 229.6W
+
+VAL, loss 0.006829008340835572, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 85:
+  CPU: 7.7% @ 1200MHz, Load: 2.10
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 65°C, Power: 229.5W
+
+TRAIN, epoch 86, loss 0.005010983396321535, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006774719804525375, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 87, loss 0.004814108949154615, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006705357510596513, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 88, loss 0.004938905216753483, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006634369496256113, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 89, loss 0.004772283278405666, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006526093285530806, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 90:
+  CPU: 7.4% @ 1348MHz, Load: 2.09
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 65°C, Power: 231.0W
+
+TRAIN, epoch 90, loss 0.004684453822672367, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 90:
+  CPU: 7.4% @ 1324MHz, Load: 2.09
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 64°C, Power: 230.2W
+
+VAL, loss 0.006466264944523573, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 90:
+  CPU: 7.6% @ 1330MHz, Load: 2.09
+  RAM: 13.11GB (22.7%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 65°C, Power: 230.1W
+
+TRAIN, epoch 91, loss 0.004678596168756485, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006428907223045826, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 92, loss 0.004569263968616724, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006393415708094835, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 93, loss 0.004421362418681383, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006295462142676115, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 94, loss 0.004438590195029974, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00621472704410553, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 95:
+  CPU: 7.9% @ 1248MHz, Load: 2.08
+  RAM: 13.20GB (22.9%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 97%, Temp: 65°C, Power: 231.2W
+
+TRAIN, epoch 95, loss 0.0043276544958353045, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 95:
+  CPU: 7.4% @ 1070MHz, Load: 2.08
+  RAM: 13.17GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 100%, Temp: 63°C, Power: 230.3W
+
+VAL, loss 0.0061244662366807465, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 95:
+  CPU: 7.4% @ 1479MHz, Load: 2.08
+  RAM: 13.14GB (22.8%)
+  GPU Memory: 0.05GB (0.3%), Peak: 4.66GB
+  GPU Utilization: 98%, Temp: 64°C, Power: 230.9W
+
+TRAIN, epoch 96, loss 0.004292026836425066, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0060482796393334865, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 97, loss 0.004211583934724331, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005987975792959332, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 98, loss 0.004207336038351059, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005906481806188822, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 99, loss 0.004056020215153694, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005869158202782273, acc tensor([99.9000], device='cuda:0')
+COMPREHENSIVE TRAINING RESOURCE SUMMARY:
+  cpu_percent_avg_avg: 7.645
+  cpu_percent_avg_max: 10.500
+  cpu_percent_avg_min: 0.000
+  cpu_percent_avg_std: 0.963
+  cpu_freq_current_avg: 1311.780
+  cpu_freq_current_max: 1863.391
+  cpu_freq_current_min: 1099.687
+  cpu_freq_current_std: 146.135
+  load_avg_1min_avg: 2.109
+  load_avg_1min_max: 2.212
+  load_avg_1min_min: 2.019
+  load_avg_1min_std: 0.052
+  memory_used_gb_avg: 13.130
+  memory_used_gb_max: 13.251
+  memory_used_gb_min: 12.564
+  memory_used_gb_std: 0.065
+  memory_percent_avg: 22.754
+  memory_percent_max: 23.000
+  memory_percent_min: 21.800
+  memory_percent_std: 0.120
+  gpu_memory_allocated_avg: 0.788
+  gpu_memory_allocated_max: 3.464
+  gpu_memory_allocated_min: 0.031
+  gpu_memory_allocated_std: 1.343
+  gpu_memory_percent_avg: 5.029
+  gpu_memory_percent_max: 22.099
+  gpu_memory_percent_min: 0.200
+  gpu_memory_percent_std: 8.572
+  gpu_utilization_avg: 97.991
+  gpu_utilization_max: 100.000
+  gpu_utilization_min: 1.000
+  gpu_utilization_std: 9.579
+  gpu_temperature_avg: 55.755
+  gpu_temperature_max: 66.000
+  gpu_temperature_min: 33.000
+  gpu_temperature_std: 6.691
+  gpu_power_watts_avg: 222.306
+  gpu_power_watts_max: 231.965
+  gpu_power_watts_min: 21.192
+  gpu_power_watts_std: 21.687
+  gpu_peak_memory_gb: 4.663
+  gpu_memory_efficiency: 5.029
+  cpu_cores_detail:
+    core_0_avg: 1.314
+    core_1_avg: 0.622
+    core_2_avg: 1.753
+    core_3_avg: 0.057
+    core_4_avg: 2.507
+    core_5_avg: 0.208
+    core_6_avg: 1.861
+    core_7_avg: 0.283
+    core_8_avg: 48.346
+    core_9_avg: 45.319
+    core_10_avg: 34.451
+    core_11_avg: 63.226
+    core_12_avg: 6.991
+    core_13_avg: 0.882
+    core_14_avg: 2.008
+    core_15_avg: 0.302
+    core_16_avg: 0.762
+    core_17_avg: 0.736
+    core_18_avg: 0.491
+    core_19_avg: 0.358
+    core_20_avg: 0.151
+    core_21_avg: 0.283
+    core_22_avg: 0.170
+    core_23_avg: 0.160
+    core_24_avg: 0.123
+    core_25_avg: 0.169
+    core_26_avg: 0.057
+    core_27_avg: 0.151
+
+
+
+ * BEST_ACC: tensor([99.9000], device='cuda:0')
+ * TIME: Time 106.335 (106.335)
+
+epochs 100, lr 0.0001, weight_decay 0.0001
+num_nodes 28, seq_length 20, num_classes 2
+date 07.18, gpu 0, archdyGIN2d
+INIT Epoch 0:
+  System CPU: 14.3%, Process CPU: 0.0%
+  System RAM: 12.73GB (22.1%)
+  Process RAM: 0.472GB (RSS), 8.879GB (VMS)
+  GPU Memory: 0.029GB (0.2%), Reserved: 0.029GB, Peak: 0.029GB
+  GPU Driver Used: 3.215GB
+  GPU Utilization: 0%, Temp: 32°C
+
+PRE_TRAIN Epoch 0:
+  System CPU: 7.6%, Process CPU: 100.4%
+  System RAM: 12.76GB (22.2%)
+  Process RAM: 0.532GB (RSS), 9.092GB (VMS)
+  GPU Memory: 0.029GB (0.2%), Reserved: 0.029GB, Peak: 0.029GB
+  GPU Driver Used: 3.215GB
+  GPU Utilization: 0%, Temp: 32°C
+
+TRAIN, epoch 0, loss 0.661784912109375, acc tensor([68.9000], device='cuda:0')
+POST_TRAIN Epoch 0:
+  System CPU: 7.5%, Process CPU: 102.0%
+  System RAM: 13.42GB (23.2%)
+  Process RAM: 1.312GB (RSS), 19.235GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.137GB
+  GPU Utilization: 99%, Temp: 36°C
+
+VAL, loss 0.6816092362403869, acc tensor([68.3000], device='cuda:0')
+POST_VAL Epoch 0:
+  System CPU: 7.8%, Process CPU: 91.9%
+  System RAM: 13.43GB (23.3%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.137GB
+  GPU Utilization: 84%, Temp: 42°C
+
+TRAIN, epoch 1, loss 0.6306014699935913, acc tensor([68.8500], device='cuda:0')
+VAL, loss 0.6757144937515259, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 2, loss 0.5891793050765991, acc tensor([69.2500], device='cuda:0')
+VAL, loss 0.6633901128768921, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 3, loss 0.5273523931503296, acc tensor([80.0500], device='cuda:0')
+VAL, loss 0.6330967874526977, acc tensor([69.9000], device='cuda:0')
+TRAIN, epoch 4, loss 0.43909720396995544, acc tensor([95.9500], device='cuda:0')
+VAL, loss 0.5605042243003845, acc tensor([92.4000], device='cuda:0')
+PRE_TRAIN Epoch 5:
+  System CPU: 8.1%, Process CPU: 98.9%
+  System RAM: 13.44GB (23.3%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 98%, Temp: 44°C
+
+TRAIN, epoch 5, loss 0.3316932990550995, acc tensor([99.1500], device='cuda:0')
+POST_TRAIN Epoch 5:
+  System CPU: 7.5%, Process CPU: 99.2%
+  System RAM: 13.44GB (23.3%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 43°C
+
+VAL, loss 0.4256627070903778, acc tensor([98.3000], device='cuda:0')
+POST_VAL Epoch 5:
+  System CPU: 7.5%, Process CPU: 107.8%
+  System RAM: 13.44GB (23.3%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 98%, Temp: 44°C
+
+TRAIN, epoch 6, loss 0.23604235243797303, acc tensor([99.3000], device='cuda:0')
+VAL, loss 0.2664780280590057, acc tensor([99.1000], device='cuda:0')
+TRAIN, epoch 7, loss 0.16690643692016602, acc tensor([99.2500], device='cuda:0')
+VAL, loss 0.15022970688343049, acc tensor([99.3000], device='cuda:0')
+TRAIN, epoch 8, loss 0.12440248090028763, acc tensor([99.2500], device='cuda:0')
+VAL, loss 0.08979694330692291, acc tensor([99.4000], device='cuda:0')
+TRAIN, epoch 9, loss 0.09764397180080414, acc tensor([99.4500], device='cuda:0')
+VAL, loss 0.06262967383861542, acc tensor([99.4000], device='cuda:0')
+PRE_TRAIN Epoch 10:
+  System CPU: 7.8%, Process CPU: 100.1%
+  System RAM: 13.43GB (23.3%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 99%, Temp: 46°C
+
+TRAIN, epoch 10, loss 0.08049981486797332, acc tensor([99.5500], device='cuda:0')
+POST_TRAIN Epoch 10:
+  System CPU: 7.5%, Process CPU: 100.5%
+  System RAM: 13.43GB (23.3%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 45°C
+
+VAL, loss 0.049757011711597444, acc tensor([99.4000], device='cuda:0')
+POST_VAL Epoch 10:
+  System CPU: 7.2%, Process CPU: 100.9%
+  System RAM: 13.43GB (23.3%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.662GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 47°C
+
+TRAIN, epoch 11, loss 0.0690135383605957, acc tensor([99.4500], device='cuda:0')
+VAL, loss 0.043131678998470306, acc tensor([99.4000], device='cuda:0')
+TRAIN, epoch 12, loss 0.058534155189991, acc tensor([99.6000], device='cuda:0')
+VAL, loss 0.03990906122326851, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 13, loss 0.051796827882528304, acc tensor([99.6500], device='cuda:0')
+VAL, loss 0.03783546382188797, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 14, loss 0.04668125587701798, acc tensor([99.7000], device='cuda:0')
+VAL, loss 0.036647331714630124, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 15:
+  System CPU: 7.9%, Process CPU: 99.6%
+  System RAM: 13.41GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 48°C
+
+TRAIN, epoch 15, loss 0.04341204759478569, acc tensor([99.7500], device='cuda:0')
+POST_TRAIN Epoch 15:
+  System CPU: 7.4%, Process CPU: 101.8%
+  System RAM: 13.38GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 47°C
+
+VAL, loss 0.03552607473731041, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 15:
+  System CPU: 7.7%, Process CPU: 99.5%
+  System RAM: 13.38GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 95%, Temp: 46°C
+
+TRAIN, epoch 16, loss 0.0396498184800148, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.034314212113618854, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 17, loss 0.03745627149939537, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.03308053031563759, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 18, loss 0.035037709027528764, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.03199401572346687, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 19, loss 0.033026472136378285, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.030819010347127914, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 20:
+  System CPU: 7.4%, Process CPU: 99.5%
+  System RAM: 13.36GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 97%, Temp: 48°C
+
+TRAIN, epoch 20, loss 0.03171099315583706, acc tensor([99.7500], device='cuda:0')
+POST_TRAIN Epoch 20:
+  System CPU: 7.3%, Process CPU: 100.4%
+  System RAM: 13.36GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 48°C
+
+VAL, loss 0.029703700870275497, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 20:
+  System CPU: 7.7%, Process CPU: 100.7%
+  System RAM: 13.36GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 98%, Temp: 49°C
+
+TRAIN, epoch 21, loss 0.02976922073960304, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.02882217389345169, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 22, loss 0.028008632630109786, acc tensor([99.8000], device='cuda:0')
+VAL, loss 0.02766330024600029, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 23, loss 0.027620038390159606, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.026690527647733688, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 24, loss 0.02611185114085674, acc tensor([99.7500], device='cuda:0')
+VAL, loss 0.025721947491168975, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 25:
+  System CPU: 7.9%, Process CPU: 99.0%
+  System RAM: 13.34GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 98%, Temp: 50°C
+
+TRAIN, epoch 25, loss 0.02494019363820553, acc tensor([99.8000], device='cuda:0')
+POST_TRAIN Epoch 25:
+  System CPU: 7.4%, Process CPU: 101.8%
+  System RAM: 13.33GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 50°C
+
+VAL, loss 0.02494447472691536, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 25:
+  System CPU: 7.7%, Process CPU: 100.5%
+  System RAM: 13.33GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 98%, Temp: 50°C
+
+TRAIN, epoch 26, loss 0.023625523522496222, acc tensor([99.8000], device='cuda:0')
+VAL, loss 0.024184164494276048, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 27, loss 0.02274204798042774, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.02336480101943016, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 28, loss 0.022947124198079108, acc tensor([99.8000], device='cuda:0')
+VAL, loss 0.022624853268265722, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 29, loss 0.02142398378252983, acc tensor([99.8500], device='cuda:0')
+VAL, loss 0.021918386712670327, acc tensor([99.5000], device='cuda:0')
+PRE_TRAIN Epoch 30:
+  System CPU: 7.7%, Process CPU: 101.2%
+  System RAM: 13.33GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 99%, Temp: 52°C
+
+TRAIN, epoch 30, loss 0.02052908031642437, acc tensor([99.9000], device='cuda:0')
+POST_TRAIN Epoch 30:
+  System CPU: 7.5%, Process CPU: 99.1%
+  System RAM: 13.33GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 51°C
+
+VAL, loss 0.0211266922801733, acc tensor([99.5000], device='cuda:0')
+POST_VAL Epoch 30:
+  System CPU: 7.5%, Process CPU: 100.7%
+  System RAM: 13.33GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 53°C
+
+TRAIN, epoch 31, loss 0.019682440593838692, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.020291398376226424, acc tensor([99.5000], device='cuda:0')
+TRAIN, epoch 32, loss 0.018947763487696646, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01954912482202053, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 33, loss 0.018022024005651473, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.018859429597854614, acc tensor([99.6000], device='cuda:0')
+TRAIN, epoch 34, loss 0.01752813334017992, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.0181697286516428, acc tensor([99.6000], device='cuda:0')
+PRE_TRAIN Epoch 35:
+  System CPU: 8.0%, Process CPU: 100.0%
+  System RAM: 13.38GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 53°C
+
+TRAIN, epoch 35, loss 0.01722693854570389, acc tensor([99.9000], device='cuda:0')
+POST_TRAIN Epoch 35:
+  System CPU: 7.7%, Process CPU: 101.2%
+  System RAM: 13.37GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 52°C
+
+VAL, loss 0.0175579833984375, acc tensor([99.6000], device='cuda:0')
+POST_VAL Epoch 35:
+  System CPU: 7.7%, Process CPU: 100.4%
+  System RAM: 13.37GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 96%, Temp: 54°C
+
+TRAIN, epoch 36, loss 0.01641534748673439, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01701707758009434, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 37, loss 0.01618793384730816, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.01650568624585867, acc tensor([99.7000], device='cuda:0')
+TRAIN, epoch 38, loss 0.015817949429154397, acc tensor([99.9000], device='cuda:0')
+VAL, loss 0.015922093339264393, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 39, loss 0.014825377702713013, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.015402538247406483, acc tensor([99.8000], device='cuda:0')
+PRE_TRAIN Epoch 40:
+  System CPU: 7.6%, Process CPU: 99.7%
+  System RAM: 13.36GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 98%, Temp: 54°C
+
+TRAIN, epoch 40, loss 0.014824962481856345, acc tensor([99.9500], device='cuda:0')
+POST_TRAIN Epoch 40:
+  System CPU: 8.7%, Process CPU: 103.1%
+  System RAM: 13.36GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.119GB
+  GPU Utilization: 100%, Temp: 53°C
+
+VAL, loss 0.014773734509944916, acc tensor([99.8000], device='cuda:0')
+POST_VAL Epoch 40:
+  System CPU: 8.5%, Process CPU: 101.4%
+  System RAM: 13.36GB (23.1%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.120GB
+  GPU Utilization: 98%, Temp: 53°C
+
+TRAIN, epoch 41, loss 0.0138975982517004, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.01418862746655941, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 42, loss 0.013377465471625329, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.013770777925848961, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 43, loss 0.01284580871462822, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.0133201969191432, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 44, loss 0.012738152958452702, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.012922116465866565, acc tensor([99.8000], device='cuda:0')
+PRE_TRAIN Epoch 45:
+  System CPU: 8.2%, Process CPU: 101.4%
+  System RAM: 13.42GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.119GB
+  GPU Utilization: 100%, Temp: 55°C
+
+TRAIN, epoch 45, loss 0.011972912549972535, acc tensor([99.9500], device='cuda:0')
+POST_TRAIN Epoch 45:
+  System CPU: 7.4%, Process CPU: 99.1%
+  System RAM: 13.42GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 54°C
+
+VAL, loss 0.012539121448993683, acc tensor([99.8000], device='cuda:0')
+POST_VAL Epoch 45:
+  System CPU: 7.5%, Process CPU: 100.9%
+  System RAM: 13.41GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 96%, Temp: 56°C
+
+TRAIN, epoch 46, loss 0.011828930892050267, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.012223043732345104, acc tensor([99.8000], device='cuda:0')
+TRAIN, epoch 47, loss 0.011697753690183162, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.011926404848694802, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 48, loss 0.011119038484990598, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.011648186467587947, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 49, loss 0.011167380146682263, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.011325375765562057, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 50:
+  System CPU: 7.6%, Process CPU: 100.1%
+  System RAM: 13.37GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 98%, Temp: 57°C
+
+TRAIN, epoch 50, loss 0.010824157342314721, acc tensor([99.9500], device='cuda:0')
+POST_TRAIN Epoch 50:
+  System CPU: 7.4%, Process CPU: 98.2%
+  System RAM: 13.37GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 56°C
+
+VAL, loss 0.010976413421332836, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 50:
+  System CPU: 7.7%, Process CPU: 100.9%
+  System RAM: 13.37GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 97%, Temp: 56°C
+
+TRAIN, epoch 51, loss 0.010169800817966462, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010705200470983983, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 52, loss 0.009857361748814584, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010411304205656051, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 53, loss 0.009765405125916005, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.010125834740698338, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 54, loss 0.009545415423810481, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00987407824024558, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 55:
+  System CPU: 8.0%, Process CPU: 100.2%
+  System RAM: 13.40GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 99%, Temp: 56°C
+
+TRAIN, epoch 55, loss 0.009639775022864342, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 55:
+  System CPU: 7.4%, Process CPU: 100.2%
+  System RAM: 13.39GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 57°C
+
+VAL, loss 0.00967587385699153, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 55:
+  System CPU: 7.5%, Process CPU: 117.4%
+  System RAM: 13.39GB (23.2%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 11.106GB
+  GPU Utilization: 100%, Temp: 58°C
+
+TRAIN, epoch 56, loss 0.008978904277086258, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009479350339621306, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 57, loss 0.009018970649689435, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009289949089288712, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 58, loss 0.00882584498822689, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.009074754584580659, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 59, loss 0.008513796150684356, acc tensor([99.9500], device='cuda:0')
+VAL, loss 0.008889883056282997, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 60:
+  System CPU: 7.7%, Process CPU: 104.4%
+  System RAM: 8.35GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 59°C
+
+TRAIN, epoch 60, loss 0.00816228011995554, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 60:
+  System CPU: 3.9%, Process CPU: 92.4%
+  System RAM: 8.34GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 57°C
+
+VAL, loss 0.008747151162475347, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 60:
+  System CPU: 4.1%, Process CPU: 107.6%
+  System RAM: 8.34GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 96%, Temp: 59°C
+
+TRAIN, epoch 61, loss 0.00811578056961298, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008615493800491095, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 62, loss 0.007925410024821758, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00851003920286894, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 63, loss 0.007808488957583904, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00837125277519226, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 64, loss 0.007399282980710268, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.008187059070914984, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 65:
+  System CPU: 4.5%, Process CPU: 101.2%
+  System RAM: 8.33GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 98%, Temp: 60°C
+
+TRAIN, epoch 65, loss 0.007365622669458389, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 65:
+  System CPU: 3.9%, Process CPU: 100.9%
+  System RAM: 8.33GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 58°C
+
+VAL, loss 0.008072457905858756, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 65:
+  System CPU: 3.8%, Process CPU: 98.4%
+  System RAM: 8.33GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 59°C
+
+TRAIN, epoch 66, loss 0.007001309994608164, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007968703910708428, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 67, loss 0.006962849985808134, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007880339421331883, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 68, loss 0.006803628701716661, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007802320327609778, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 69, loss 0.006553760897368192, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0077197175770998, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 70:
+  System CPU: 4.1%, Process CPU: 100.6%
+  System RAM: 8.32GB (14.9%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 97%, Temp: 59°C
+
+TRAIN, epoch 70, loss 0.006537911873310804, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 70:
+  System CPU: 3.8%, Process CPU: 101.5%
+  System RAM: 8.31GB (14.9%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 60°C
+
+VAL, loss 0.007610987421125173, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 70:
+  System CPU: 3.9%, Process CPU: 93.3%
+  System RAM: 8.31GB (14.9%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 97%, Temp: 61°C
+
+TRAIN, epoch 71, loss 0.0065026235468685625, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0074759676456451415, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 72, loss 0.006394379779696465, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007347612980753183, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 73, loss 0.006275060702115297, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007229330509901047, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 74, loss 0.006135482057929039, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.007089980036020279, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 75:
+  System CPU: 4.7%, Process CPU: 129.8%
+  System RAM: 8.38GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 99%, Temp: 62°C
+
+TRAIN, epoch 75, loss 0.005868018381297588, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 75:
+  System CPU: 3.8%, Process CPU: 99.1%
+  System RAM: 8.37GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 59°C
+
+VAL, loss 0.007012464921921492, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 75:
+  System CPU: 3.9%, Process CPU: 103.2%
+  System RAM: 8.37GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 61°C
+
+TRAIN, epoch 76, loss 0.006209958024322987, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0069212309792637825, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 77, loss 0.005786595553159714, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006888099513947964, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 78, loss 0.005463981054723263, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0068172551617026326, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 79, loss 0.005408685512840748, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006753931991755962, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 80:
+  System CPU: 3.8%, Process CPU: 100.5%
+  System RAM: 8.34GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 63°C
+
+TRAIN, epoch 80, loss 0.005301317427307367, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 80:
+  System CPU: 3.7%, Process CPU: 99.8%
+  System RAM: 8.33GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 62°C
+
+VAL, loss 0.006670058954507113, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 80:
+  System CPU: 4.1%, Process CPU: 100.0%
+  System RAM: 8.33GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 97%, Temp: 63°C
+
+TRAIN, epoch 81, loss 0.005310387887060643, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006599963061511517, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 82, loss 0.005138217434287071, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006542234055697918, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 83, loss 0.005345563489943743, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006496506530791521, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 84, loss 0.004975800346583128, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00649401631206274, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 85:
+  System CPU: 4.2%, Process CPU: 100.1%
+  System RAM: 8.37GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 98%, Temp: 62°C
+
+TRAIN, epoch 85, loss 0.004916291285306215, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 85:
+  System CPU: 3.8%, Process CPU: 99.1%
+  System RAM: 8.36GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 62°C
+
+VAL, loss 0.006451073478907347, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 85:
+  System CPU: 4.1%, Process CPU: 106.6%
+  System RAM: 8.36GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 98%, Temp: 64°C
+
+TRAIN, epoch 86, loss 0.004950991410762072, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006418565392494201, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 87, loss 0.004696446292102337, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.00634874914959073, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 88, loss 0.004760380167514086, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006289417773485183, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 89, loss 0.004724215410649777, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006206405024975538, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 90:
+  System CPU: 3.8%, Process CPU: 100.3%
+  System RAM: 8.34GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 65°C
+
+TRAIN, epoch 90, loss 0.004554283499717713, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 90:
+  System CPU: 3.8%, Process CPU: 99.5%
+  System RAM: 8.33GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 63°C
+
+VAL, loss 0.0061364891175180675, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 90:
+  System CPU: 3.8%, Process CPU: 100.1%
+  System RAM: 8.33GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 96%, Temp: 64°C
+
+TRAIN, epoch 91, loss 0.004444438263773918, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006098034089431167, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 92, loss 0.0044963774494826796, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0060688579883426425, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 93, loss 0.004367324858903885, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.006037561884149909, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 94, loss 0.004304216459393501, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0060407563075423245, acc tensor([99.9000], device='cuda:0')
+PRE_TRAIN Epoch 95:
+  System CPU: 4.3%, Process CPU: 111.9%
+  System RAM: 8.38GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 98%, Temp: 64°C
+
+TRAIN, epoch 95, loss 0.00427649237588048, acc tensor([100.0000], device='cuda:0')
+POST_TRAIN Epoch 95:
+  System CPU: 3.7%, Process CPU: 100.2%
+  System RAM: 8.37GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.052GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 100%, Temp: 64°C
+
+VAL, loss 0.006029599422588945, acc tensor([99.9000], device='cuda:0')
+POST_VAL Epoch 95:
+  System CPU: 4.3%, Process CPU: 101.5%
+  System RAM: 8.37GB (15.0%)
+  Process RAM: 1.324GB (RSS), 19.250GB (VMS)
+  GPU Memory: 0.051GB (0.3%), Reserved: 7.895GB, Peak: 4.663GB
+  GPU Driver Used: 8.978GB
+  GPU Utilization: 97%, Temp: 65°C
+
+TRAIN, epoch 96, loss 0.004207913415506482, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0060089994072914125, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 97, loss 0.004125702403485775, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.0059950115829706194, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 98, loss 0.004237618397921324, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005958781292662025, acc tensor([99.9000], device='cuda:0')
+TRAIN, epoch 99, loss 0.004117942497134209, acc tensor([100.0000], device='cuda:0')
+VAL, loss 0.005938919788226485, acc tensor([99.9000], device='cuda:0')
+COMPREHENSIVE TRAINING RESOURCE SUMMARY:
+  system_cpu_percent_avg: 6.273
+  system_cpu_percent_max: 9.700
+  system_cpu_percent_min: 0.000
+  system_cpu_percent_std: 1.959
+  process_cpu_percent_avg: 99.315
+  process_cpu_percent_max: 128.800
+  process_cpu_percent_min: 0.000
+  process_cpu_percent_std: 10.297
+  cpu_freq_current_avg: 1338.886
+  cpu_freq_current_max: 1800.912
+  cpu_freq_current_min: 1042.774
+  cpu_freq_current_std: 153.264
+  load_avg_1min_avg: 2.293
+  load_avg_1min_max: 2.479
+  load_avg_1min_min: 1.851
+  load_avg_1min_std: 0.169
+  system_memory_used_gb_avg: 11.364
+  system_memory_used_gb_max: 13.551
+  system_memory_used_gb_min: 8.312
+  system_memory_used_gb_std: 2.453
+  system_memory_percent_avg: 19.898
+  system_memory_percent_max: 23.500
+  system_memory_percent_min: 14.900
+  system_memory_percent_std: 3.992
+  process_memory_rss_gb_avg: 1.316
+  process_memory_rss_gb_max: 1.324
+  process_memory_rss_gb_min: 0.532
+  process_memory_rss_gb_std: 0.077
+  process_memory_vms_gb_avg: 19.153
+  process_memory_vms_gb_max: 19.250
+  process_memory_vms_gb_min: 9.092
+  process_memory_vms_gb_std: 0.982
+  process_memory_percent_avg: 2.139
+  process_memory_percent_max: 2.153
+  process_memory_percent_min: 0.865
+  process_memory_percent_std: 0.125
+  gpu_memory_allocated_avg: 0.836
+  gpu_memory_allocated_max: 3.464
+  gpu_memory_allocated_min: 0.029
+  gpu_memory_allocated_std: 1.400
+  gpu_memory_percent_avg: 5.332
+  gpu_memory_percent_max: 22.099
+  gpu_memory_percent_min: 0.186
+  gpu_memory_percent_std: 8.931
+  gpu_utilization_avg: 97.962
+  gpu_utilization_max: 100.000
+  gpu_utilization_min: 0.000
+  gpu_utilization_std: 9.688
+  gpu_driver_memory_used_avg: 10.169
+  gpu_driver_memory_used_max: 11.137
+  gpu_driver_memory_used_min: 3.215
+  gpu_driver_memory_used_std: 1.244
+  gpu_temperature_avg: 55.104
+  gpu_temperature_max: 65.000
+  gpu_temperature_min: 32.000
+  gpu_temperature_std: 6.883
+  gpu_power_watts_avg: 221.385
+  gpu_power_watts_max: 231.327
+  gpu_power_watts_min: 22.672
+  gpu_power_watts_std: 21.385
+  gpu_peak_memory_gb: 4.663
+  gpu_memory_efficiency: 5.332
+
+
+
+ * BEST_ACC: tensor([99.9000], device='cuda:0')
+ * TIME: Time 106.450 (106.450)
+
