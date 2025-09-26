@@ -1,0 +1,7 @@
+numpy
+torch
+torchvision
+pandas
+argparse
+aeon
+keras-self-attention
