@@ -2,7 +2,6 @@ import torch
 import gymnasium as gym
 from stable_baselines3 import SAC, PPO, DQN
 from src.net import GNNStack
-import highway_env
 from gymnasium.wrappers import GrayscaleObservation
 
 

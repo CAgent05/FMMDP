@@ -86,7 +86,7 @@ def test_model():
     plt.ylabel("Frequency")
 
     plt.savefig("./Thirdeye/ha_hd_hrl_value.png")
-    check_episode = 100
+    check_episode = 1
 
     window_size = 50
         
@@ -97,7 +97,7 @@ def test_model():
 
     for i in tqdm.tqdm(list(range(check_episode))):
         
-        obs, _ = env.reset()
+        obs, _ = env.reset(seed=5000+i)
         done = False
         truncated = False
         total_reward = 0
@@ -113,7 +113,7 @@ def test_model():
         
         saliency = Saliency(model.policy)
         vae = VAE()
-        vae.load_state_dict(torch.load('/home/cy/PaperWork/FMMDP/Thirdeye/vae.pth'))
+        vae.load_state_dict(torch.load('./Thirdeye/vae.pth'))
         vae.to('cuda:0')
 
         while not done and not truncated:

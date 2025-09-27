@@ -27,9 +27,8 @@ python DataCollection.py --dataset BipedalWalkerHC --episodes 3000 --nsteps 20
 
 For **vision**-based environment and agent
 ```python
-python DataCollection4CarRacing.py --method FMMDP --episodes 3000 --nsteps 20
+python DataCollection4CarRacing.py --episodes 3000 --nsteps 20
 ```
-* **method:** FMMDP, Thirdeye
 * **episodes:** Number of episodes to collect the data. The default value is 3000.
 * **nsteps:** Number of steps in each episode. When nsteps is 20, we also save state-only and state-action-reward time series for comparison with state-action data.
 
@@ -37,14 +36,25 @@ python DataCollection4CarRacing.py --method FMMDP --episodes 3000 --nsteps 20
 ```python
 python Todynet/src/train.py --dataset BipedalWalkerHCSA --nsteps 20 --epochs 100
 ```
-* **dataset:** use Dataset ( BipedalWaklkerHC, Hopper, InvertedDoublePendulum, Walker2d, Humanoid, CarRacing ) + SAR ( S-State, A-Action, R-Reward ). 
+* **dataset:** use Environment ( BipedalWaklkerHC, Hopper, InvertedDoublePendulum, Walker2d, Humanoid, CarRacing ) + SAR ( S-State, A-Action, R-Reward ) . 
 * **epochs:** Number of epochs to train the model. The default value is 100.
+* **nsteps:** The length of MTS ( 10, 20, 30, 40, 50)
+
+* Run training with comprehensive resource monitoring to track GPU usage, memory consumption, power consumption, and carbon emissions during model training, with all metrics logged to file
+```python
+python Todynet/src/train_with_resource.py --dataset BipedalWalkerHCSA --nsteps 20 --epochs 100
+```
 
 ### 3. Online Monitor
 ```python
 python TodyNet/OnlineMonitor.py --dataset BipedalWalkerHCSA --nsteps 20
 ```
-* Parameter
+
+Resource monitoring for online process execution 
+```python
+python TodyNet/OLM_resource.py --dataset BipedalWalkerHCSA --nsteps 20
+```
+
 
 ### 4. Data Analysis
 ```python
@@ -63,8 +73,19 @@ python Thirdeye/thirdeye.py -s test
 
 ### 3. Result Analysis
 ```python
-python Thirdeye/thirdeye.py -s analyze
+python Thirdeye/thirdeye.py -s analyze # calculate TP,FP,TN,FN
 ```
+
+## Comparison with Monte-Carlo Dropout
+### 1. Data Collection
+```python
+python MCD/DataCollection.py
+```
+### 2. Online Monitoring
+```python
+python MCD/test.py
+```
+
 
 ## TodyNet vs. Alternative MTSC Methods
 
@@ -93,6 +114,15 @@ python WEASEL_MUSE/train.py --dataset BipedalWalkerHCSA --nsteps 20
 python WEASEL_MUSE/OnlineMonitor.py --dataset BipedalWalkerHCSA --nsteps 20
 # Vision-based
 python WEASEL_MUSE/OnlineMonitor4CarRacing.py --dataset BipedalWalkerHCSA --nsteps 20
+```
+
+### MTPool
+```python
+python MTPool/train.py --dataset BipedalWalkerHCSA --nsteps 20
+# Sensor-based 
+python MTPool/OnlineMonitor.py --dataset BipedalWalkerHCSA --nsteps 20
+# Vision-based
+python MTPool/OnlineMonitor4CarRacing.py --dataset BipedalWalkerHCSA --nsteps 20
 ```
 
 **dataset:** use Dataset ( BipedalWaklkerHC, Hopper, InvertedDoublePendulum, Walker2d, Humanoid, CarRacing ) + SA ( S-State, A-Action). 

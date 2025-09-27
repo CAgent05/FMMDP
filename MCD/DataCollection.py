@@ -41,13 +41,12 @@ print("=" * 60)
 print("收集正常回合的MC Dropout不确定性数据")
 print("=" * 60)
 
-# 数据收集
 uncertainty_data = [] 
 safe_episodes_count = 0
 total_episodes = 0
 
 i = 0
-while safe_episodes_count < 1:  #收集500个安全回合
+while safe_episodes_count < 1000:  
     obs, _ = env.reset(seed=i)
     terminated, truncated = False, False
     cnt = 0
@@ -55,7 +54,6 @@ while safe_episodes_count < 1:  #收集500个安全回合
     episode_uncertainties = []
     
     while not terminated and not truncated:
-        # 跳过前50步
         if cnt < 50:
             action = model.predict(obs, deterministic=True)
             obs, reward, terminated, truncated, info = env.step(action)
@@ -92,7 +90,7 @@ while safe_episodes_count < 1:  #收集500个安全回合
             ep_min = ep_max = ep_mean = 0
             ep_samples = 0
         
-        print(f'安全回合 {safe_episodes_count}/500 (总第{total_episodes}回合): '
+        print(f'安全回合 {safe_episodes_count}/1000 (总第{total_episodes}回合): '
               f'Steps={cnt}, Reward={total_reward:.1f}, Samples={ep_samples}, '
               f'Unc_range=[{ep_min:.8f}, {ep_max:.8f}], Unc_mean={ep_mean:.8f}')
     else:

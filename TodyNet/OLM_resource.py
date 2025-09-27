@@ -3,19 +3,33 @@ import torch
 from collections import deque
 from utils import prepare_agent
 import numpy as np
+from src.net import GNNStack
 import pandas as pd
 import os
 import warnings
 import time
+import matplotlib.pyplot as plt
 import json
 import threading
+import subprocess
 from datetime import datetime
+try:
+    import pynvml
+    pynvml.nvmlInit()
+    NVML_AVAILABLE = True
+    print("✓ NVIDIA-ML library available")
+except ImportError:
+    NVML_AVAILABLE = False
+    print("⚠ Warning: pynvml not available, will use alternative monitoring")
+except Exception as e:
+    NVML_AVAILABLE = False
+    print(f"⚠ Warning: pynvml initialization failed: {e}")
+
 import psutil
 
 warnings.filterwarnings("ignore")
 
 def convert_to_serializable(obj):
-    """将不可序列化的对象转换为可序列化格式"""
     if isinstance(obj, torch.Tensor):
         return obj.item() if obj.numel() == 1 else obj.tolist()
     elif isinstance(obj, (int, float, str, bool, type(None))):
@@ -33,171 +47,299 @@ def convert_to_serializable(obj):
     else:
         return str(obj)
 
-class BaselineResourceMonitor:
-    """专门监控强化学习仿真基线资源开销的监控类"""
+def safe_float(value):
+    if isinstance(value, torch.Tensor):
+        return value.item()
+    elif isinstance(value, (int, float)):
+        return float(value)
+    else:
+        return 0.0
+
+class GPUMonitor:
     
-    def __init__(self, log_interval=10):
+    def __init__(self, gpu_id=0):
+        self.gpu_id = gpu_id
+        self.nvml_available = False
+        self.nvidia_smi_available = False
+        
+        if NVML_AVAILABLE:
+            try:
+                self.gpu_handle = pynvml.nvmlDeviceGetHandleByIndex(gpu_id)
+                self.nvml_available = True
+                print(f"✓ NVML GPU {gpu_id} monitoring enabled")
+            except Exception as e:
+                print(f"⚠ NVML GPU {gpu_id} access failed: {e}")
+        
+        try:
+            result = subprocess.run(['nvidia-smi', '--query-gpu=index', '--format=csv,noheader,nounits'], 
+                                  capture_output=True, text=True, timeout=5)
+            if result.returncode == 0:
+                self.nvidia_smi_available = True
+                print("✓ nvidia-smi monitoring available as backup")
+        except:
+            print("⚠ nvidia-smi not available")
+    
+    def get_gpu_metrics_nvml(self):
+        if not self.nvml_available:
+            return None
+            
+        try:
+            util = pynvml.nvmlDeviceGetUtilizationRates(self.gpu_handle)
+            gpu_util = util.gpu
+            memory_util = util.memory
+            
+            memory_info = pynvml.nvmlDeviceGetMemoryInfo(self.gpu_handle)
+            memory_total = memory_info.total / 1024**2  # MB
+            memory_used = memory_info.used / 1024**2    # MB
+            memory_free = memory_info.free / 1024**2    # MB
+            
+            try:
+                power_usage = pynvml.nvmlDeviceGetPowerUsage(self.gpu_handle) / 1000.0  # W
+            except:
+                power_usage = 0
+                
+            try:
+                temperature = pynvml.nvmlDeviceGetTemperature(self.gpu_handle, pynvml.NVML_TEMPERATURE_GPU)
+            except:
+                temperature = 0
+                
+            return {
+                'gpu_utilization': gpu_util,
+                'memory_utilization': memory_util,
+                'memory_total_mb': memory_total,
+                'memory_used_mb': memory_used,
+                'memory_free_mb': memory_free,
+                'power_usage_w': power_usage,
+                'temperature_c': temperature,
+                'monitoring_method': 'nvml'
+            }
+        except Exception as e:
+            return None
+    
+    def get_gpu_metrics_nvidia_smi(self):
+        if not self.nvidia_smi_available:
+            return None
+            
+        try:
+            cmd = [
+                'nvidia-smi', 
+                '--query-gpu=utilization.gpu,memory.total,memory.used,memory.free,power.draw,temperature.gpu',
+                '--format=csv,noheader,nounits',
+                f'--id={self.gpu_id}'
+            ]
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=5)
+            
+            if result.returncode == 0:
+                values = result.stdout.strip().split(', ')
+                
+                gpu_util = float(values[0]) if values[0] != '[Not Supported]' else 0
+                memory_total = float(values[1]) if values[1] != '[Not Supported]' else 0
+                memory_used = float(values[2]) if values[2] != '[Not Supported]' else 0
+                memory_free = float(values[3]) if values[3] != '[Not Supported]' else 0
+                power_usage = float(values[4]) if values[4] != '[Not Supported]' else 0
+                temperature = float(values[5]) if values[5] != '[Not Supported]' else 0
+                
+                return {
+                    'gpu_utilization': gpu_util,
+                    'memory_utilization': (memory_used / memory_total * 100) if memory_total > 0 else 0,
+                    'memory_total_mb': memory_total,
+                    'memory_used_mb': memory_used,
+                    'memory_free_mb': memory_free,
+                    'power_usage_w': power_usage,
+                    'temperature_c': temperature,
+                    'monitoring_method': 'nvidia-smi'
+                }
+        except Exception as e:
+            pass
+            
+        return None
+    
+    def get_gpu_metrics(self):
+
+        metrics = self.get_gpu_metrics_nvml()
+        if metrics:
+            return metrics
+        
+        metrics = self.get_gpu_metrics_nvidia_smi()
+        if metrics:
+            return metrics
+
+        return {
+            'gpu_utilization': 0,
+            'memory_utilization': 0,
+            'memory_total_mb': 0,
+            'memory_used_mb': 0,
+            'memory_free_mb': 0,
+            'power_usage_w': 0,
+            'temperature_c': 0,
+            'monitoring_method': 'failed'
+        }
+
+class ResourceMonitor:
+    def __init__(self, gpu_id=0, log_interval=10):
+        self.gpu_id = gpu_id
         self.log_interval = log_interval
-        self.process = psutil.Process(os.getpid())
+        self.process_pid = os.getpid()
         self.monitoring = False
         self.metrics_history = []
         self.start_time = time.time()
         
-        # 基线测量
-        self.baseline_cpu_percent = 0
-        self.baseline_memory_mb = 0
-        self.baseline_cpu_times = None
+        self.gpu_monitor = GPUMonitor(gpu_id)
         
-        # RL仿真统计
+        self.process = psutil.Process(self.process_pid)
+        
+        self.carbon_tracker = CarbonTracker(region='CN')
+        
         self.episode_count = 0
         self.total_reward_sum = 0
-        self.agent_inference_times = []
+        self.inference_times = []
         
-        print("✓ Baseline RL Resource monitoring initialized")
+        print("✓ RL Resource monitoring initialized")
+        
+    def get_gpu_metrics(self):
+        gpu_metrics = self.gpu_monitor.get_gpu_metrics()
+        
+        # 获取当前进程的GPU内存使用
+        process_gpu_memory = self.get_process_gpu_memory()
+        gpu_metrics['process_gpu_memory_mb'] = process_gpu_memory
+        
+        return gpu_metrics
     
-    def set_baseline(self):
-        """设置系统基线（RL环境启动前）"""
-        time.sleep(2)  # 等待系统稳定
-        self.baseline_cpu_percent = self.process.cpu_percent(interval=1.0)
-        self.baseline_memory_mb = self.process.memory_info().rss / 1024**2
-        self.baseline_cpu_times = self.process.cpu_times()
-        print(f"✓ System baseline set - CPU: {self.baseline_cpu_percent:.1f}%, Memory: {self.baseline_memory_mb:.1f}MB")
-    
-    def measure_cpu_usage(self):
-        """测量CPU使用情况"""
+    def get_process_gpu_memory(self):
         try:
-            # CPU百分比
+            cmd = [
+                'nvidia-smi', 
+                '--query-compute-apps=pid,used_memory',
+                '--format=csv,noheader,nounits'
+            ]
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=5)
+            
+            if result.returncode == 0:
+                lines = result.stdout.strip().split('\n')
+                for line in lines:
+                    if line.strip():
+                        parts = line.split(', ')
+                        if len(parts) == 2:
+                            pid, memory = parts
+                            if int(pid) == self.process_pid:
+                                return float(memory)
+        except:
+            pass
+        
+        return 0
+    
+    def get_cpu_memory_metrics(self):
+        try:
             cpu_percent = self.process.cpu_percent(interval=0.1)
             
-            # CPU时间
-            cpu_times = self.process.cpu_times()
-            user_time = cpu_times.user
-            system_time = cpu_times.system
-            total_cpu_time = user_time + system_time
-            
-            # 相对于基线的增量
-            if self.baseline_cpu_times:
-                user_time_delta = user_time - self.baseline_cpu_times.user
-                system_time_delta = system_time - self.baseline_cpu_times.system
-                total_cpu_time_delta = user_time_delta + system_time_delta
-            else:
-                user_time_delta = system_time_delta = total_cpu_time_delta = 0
-            
-            # 线程和上下文切换
-            num_threads = self.process.num_threads()
-            ctx_switches = self.process.num_ctx_switches()
-            
-            return {
-                'cpu_percent': cpu_percent,
-                'cpu_percent_vs_baseline': cpu_percent - self.baseline_cpu_percent,
-                'user_cpu_time_seconds': user_time,
-                'system_cpu_time_seconds': system_time,
-                'total_cpu_time_seconds': total_cpu_time,
-                'rl_cpu_time_delta': total_cpu_time_delta,
-                'num_threads': num_threads,
-                'voluntary_ctx_switches': ctx_switches.voluntary,
-                'involuntary_ctx_switches': ctx_switches.involuntary
-            }
-        except Exception as e:
-            print(f"CPU monitoring error: {e}")
-            return {}
-    
-    def measure_memory_usage(self):
-        """测量内存使用情况"""
-        try:
             memory_info = self.process.memory_info()
-            memory_full_info = self.process.memory_full_info()
+            process_memory_mb = memory_info.rss / 1024**2
+            process_vms_mb = memory_info.vms / 1024**2
             
-            # 基本内存指标
-            rss_mb = memory_info.rss / 1024**2  # 物理内存
-            vms_mb = memory_info.vms / 1024**2  # 虚拟内存
-            
-            # 详细内存指标
-            pss_mb = memory_full_info.pss / 1024**2    # 按比例分配的内存
-            swap_mb = memory_full_info.swap / 1024**2   # 交换内存
-            
-            # 系统内存信息
+            # 系统总体内存
             sys_memory = psutil.virtual_memory()
+            sys_memory_percent = sys_memory.percent
+            sys_memory_used_mb = sys_memory.used / 1024**2
+            sys_memory_total_mb = sys_memory.total / 1024**2
             
             return {
-                'memory_rss_mb': rss_mb,
-                'memory_vms_mb': vms_mb,
-                'memory_pss_mb': pss_mb,
-                'memory_swap_mb': swap_mb,
-                'rl_memory_increase_mb': rss_mb - self.baseline_memory_mb,
-                'memory_percent_of_system': self.process.memory_percent(),
-                'system_memory_available_mb': sys_memory.available / 1024**2,
-                'system_memory_usage_percent': sys_memory.percent
+                'process_cpu_percent': cpu_percent,
+                'process_memory_mb': process_memory_mb,
+                'process_vms_mb': process_vms_mb,
+                'system_memory_percent': sys_memory_percent,
+                'system_memory_used_mb': sys_memory_used_mb,
+                'system_memory_total_mb': sys_memory_total_mb
             }
         except Exception as e:
-            print(f"Memory monitoring error: {e}")
-            return {}
+            return {
+                'process_cpu_percent': 0,
+                'process_memory_mb': 0,
+                'process_vms_mb': 0,
+                'system_memory_percent': 0,
+                'system_memory_used_mb': 0,
+                'system_memory_total_mb': 0
+            }
     
-    def measure_agent_inference(self, inference_func, *args, **kwargs):
-        """测量RL智能体推理的资源开销"""
-        # 推理前状态
-        pre_cpu_times = self.process.cpu_times()
-        pre_memory = self.process.memory_info().rss / 1024**2
-        
-        # 执行推理
-        start_time = time.perf_counter()
-        result = inference_func(*args, **kwargs)
-        inference_time = (time.perf_counter() - start_time) * 1000  # ms
-        
-        # 推理后状态
-        post_cpu_times = self.process.cpu_times()
-        post_memory = self.process.memory_info().rss / 1024**2
-        
-        # 计算推理开销
-        cpu_time_used = (post_cpu_times.user + post_cpu_times.system) - \
-                       (pre_cpu_times.user + pre_cpu_times.system)
-        memory_delta = post_memory - pre_memory
-        
-        inference_metrics = {
-            'agent_inference_time_ms': inference_time,
-            'agent_cpu_time_used_ms': cpu_time_used * 1000,
-            'agent_memory_delta_mb': memory_delta,
-            'agent_cpu_efficiency': (cpu_time_used * 1000) / inference_time if inference_time > 0 else 0
-        }
-        
-        self.agent_inference_times.append(inference_time)
-        
-        return result, inference_metrics
+    def get_torch_metrics(self):
+
+        if not torch.cuda.is_available():
+            return {
+                'torch_allocated_mb': 0,
+                'torch_reserved_mb': 0,
+                'torch_max_allocated_mb': 0,
+                'torch_max_reserved_mb': 0,
+                'torch_memory_efficiency': 0
+            }
+            
+        try:
+            torch.cuda.synchronize()  # 确保所有操作完成
+            
+            allocated = torch.cuda.memory_allocated(self.gpu_id)
+            reserved = torch.cuda.memory_reserved(self.gpu_id)
+            max_allocated = torch.cuda.max_memory_allocated(self.gpu_id)
+            max_reserved = torch.cuda.max_memory_reserved(self.gpu_id)
+            
+            return {
+                'torch_allocated_mb': allocated / 1024**2,
+                'torch_reserved_mb': reserved / 1024**2,
+                'torch_max_allocated_mb': max_allocated / 1024**2,
+                'torch_max_reserved_mb': max_reserved / 1024**2,
+                'torch_memory_efficiency': allocated / reserved if reserved > 0 else 0
+            }
+        except Exception as e:
+            return {
+                'torch_allocated_mb': 0,
+                'torch_reserved_mb': 0,
+                'torch_max_allocated_mb': 0,
+                'torch_max_reserved_mb': 0,
+                'torch_memory_efficiency': 0
+            }
     
-    def collect_metrics(self, episode=None, reward=None, steps=None, phase=None, custom_data=None):
-        """收集RL基线指标"""
+    def collect_metrics(self, episode=None, reward=None, steps=None, phase=None, inference_time=None):
+        """收集所有指标"""
         timestamp = time.time()
         elapsed_time = timestamp - self.start_time
+        
+
+        episode = convert_to_serializable(episode)
+        reward = convert_to_serializable(reward)
+        steps = convert_to_serializable(steps)
+        inference_time = convert_to_serializable(inference_time)
         
         metrics = {
             'timestamp': timestamp,
             'elapsed_time': elapsed_time,
             'datetime': datetime.fromtimestamp(timestamp).isoformat(),
-            'episode': convert_to_serializable(episode),
-            'reward': convert_to_serializable(reward),
-            'steps': convert_to_serializable(steps),
-            'phase': phase
+            'episode': episode,
+            'reward': reward,
+            'steps': steps,
+            'phase': phase,
+            'inference_time_ms': inference_time
         }
+
+        gpu_metrics = self.get_gpu_metrics()
+        metrics.update(gpu_metrics)
+        # 更新碳排放追踪
+        self.carbon_tracker.update_energy(gpu_metrics['power_usage_w'], 1)
+
+        cpu_memory_metrics = self.get_cpu_memory_metrics()
+        metrics.update(cpu_memory_metrics)
+
+        torch_metrics = self.get_torch_metrics()
+        metrics.update(torch_metrics)
         
-        # CPU指标
-        cpu_metrics = self.measure_cpu_usage()
-        metrics.update(cpu_metrics)
-        
-        # 内存指标
-        memory_metrics = self.measure_memory_usage()
-        metrics.update(memory_metrics)
-        
-        # 自定义数据
-        if custom_data:
-            metrics.update(convert_to_serializable(custom_data))
-        
-        # 更新RL统计
+        # 更新RL特定统计
         if episode is not None:
             self.episode_count = episode
         if reward is not None:
             self.total_reward_sum += reward
+        if inference_time is not None:
+            self.inference_times.append(inference_time)
         
         self.metrics_history.append(metrics)
+        
         return metrics
     
     def start_background_monitoring(self):
@@ -206,177 +348,344 @@ class BaselineResourceMonitor:
         self.monitor_thread = threading.Thread(target=self._background_monitor)
         self.monitor_thread.daemon = True
         self.monitor_thread.start()
-        print("✓ Background baseline monitoring started")
+        print("✓ Background monitoring started")
     
     def stop_background_monitoring(self):
-        """停止后台监控"""
+      
         self.monitoring = False
         if hasattr(self, 'monitor_thread'):
             self.monitor_thread.join()
         print("✓ Background monitoring stopped")
     
     def _background_monitor(self):
-        """后台监控循环"""
+
         while self.monitoring:
             self.collect_metrics(phase='background')
             time.sleep(self.log_interval)
     
+    def save_metrics(self, filepath):
+ 
+        try:
+            # 转换所有数据为可序列化格式
+            serializable_metrics = convert_to_serializable(self.metrics_history)
+            
+            with open(filepath, 'w') as f:
+                json.dump(serializable_metrics, f, indent=2)
+            print(f"✓ Detailed metrics saved to: {filepath}")
+            print(f"  Total monitoring samples: {len(self.metrics_history)}")
+        except Exception as e:
+            print(f"✗ Error saving metrics: {e}")
+    
+    def save_summary_report(self, filepath):
+    
+        summary = self.get_summary_stats()
+        if summary:
+            try:
+                serializable_summary = convert_to_serializable(summary)
+                with open(filepath, 'w') as f:
+                    json.dump(serializable_summary, f, indent=2)
+                print(f"✓ Summary report saved to: {filepath}")
+            except Exception as e:
+                print(f"✗ Error saving summary: {e}")
+    
+    def save_human_readable_summary(self, filepath):
+     
+        summary = self.get_summary_stats()
+        if not summary:
+            print("No metrics data available for summary")
+            return
+            
+        try:
+            with open(filepath, 'w') as f:
+                f.write("="*80 + "\n")
+                f.write("RL RESOURCE USAGE SUMMARY REPORT\n")
+                f.write("="*80 + "\n\n")
+                
+                exp_info = summary['experiment_info']
+                rl_metrics = summary['rl_metrics']
+                
+                f.write(f"Experiment Duration: {exp_info['total_duration_seconds']:.1f} seconds ({exp_info['total_duration_seconds']/60:.1f} minutes)\n")
+                f.write(f"Total Episodes: {rl_metrics['total_episodes']}\n")
+                f.write(f"Average Episode Duration: {rl_metrics['avg_episode_duration_seconds']:.2f}s\n")
+                f.write(f"Total Monitoring Samples: {exp_info['total_samples']}\n")
+                f.write(f"Start Time: {exp_info['start_time']}\n")
+                f.write(f"End Time: {exp_info['end_time']}\n\n")
+                
+                f.write("REINFORCEMENT LEARNING PERFORMANCE:\n")
+                f.write(f"  Average Reward: {rl_metrics['average_reward']:.2f}\n")
+                f.write(f"  Total Reward Sum: {rl_metrics['total_reward_sum']:.2f}\n")
+                f.write(f"  Average Inference Time: {rl_metrics['avg_inference_time_ms']:.2f}ms\n")
+                f.write(f"  Max Inference Time: {rl_metrics['max_inference_time_ms']:.2f}ms\n")
+                f.write(f"  Inference Throughput: {rl_metrics['inference_fps']:.1f} FPS\n\n")
+                
+                # 根据GPU监控是否成功显示不同内容
+                if summary.get('gpu_metrics') and summary['gpu_metrics']['utilization']['max'] > 0:
+                    gpu_metrics = summary['gpu_metrics']
+                    f.write("GPU UTILIZATION:\n")
+                    f.write(f"  Average: {gpu_metrics['utilization']['avg']:.1f}%\n")
+                    f.write(f"  Peak: {gpu_metrics['utilization']['max']:.1f}%\n")
+                    f.write(f"  Minimum: {gpu_metrics['utilization']['min']:.1f}%\n")
+                    f.write(f"  Standard Deviation: {gpu_metrics['utilization']['std']:.1f}%\n\n")
+                    
+                    f.write("GPU MEMORY USAGE:\n")
+                    f.write(f"  Peak Usage: {gpu_metrics['memory_mb']['peak']:.1f} MB\n")
+                    f.write(f"  Average Usage: {gpu_metrics['memory_mb']['avg']:.1f} MB\n")
+                    f.write(f"  Minimum Usage: {gpu_metrics['memory_mb']['min']:.1f} MB\n\n")
+                else:
+                    f.write("GPU MONITORING:\n")
+                    f.write("  System-level GPU monitoring failed\n")
+                    f.write("  Using PyTorch-level monitoring only\n\n")
+                
+                # PyTorch内存信息
+                torch_metrics = summary['torch_metrics']
+                f.write("PYTORCH GPU MEMORY:\n")
+                f.write(f"  Peak Allocated: {torch_metrics['max_allocated_mb']:.1f} MB\n")
+                f.write(f"  Peak Reserved: {torch_metrics['max_reserved_mb']:.1f} MB\n")
+                f.write(f"  Memory Efficiency: {torch_metrics['avg_efficiency']:.3f}\n\n")
+                
+                # 功耗信息（如果可用）
+                power = summary['power_consumption']
+                if power['max_watts'] > 0:
+                    f.write("POWER CONSUMPTION:\n")
+                    f.write(f"  Average Power: {power['avg_watts']:.1f} W\n")
+                    f.write(f"  Peak Power: {power['max_watts']:.1f} W\n")
+                    f.write(f"  Total Energy: {power['total_energy_wh']:.2f} Wh ({power['total_energy_kwh']:.4f} kWh)\n\n")
+                    
+                    carbon = summary['carbon_footprint']
+                    f.write("ENVIRONMENTAL IMPACT:\n")
+                    f.write(f"  Carbon Emission: {carbon['carbon_emission_kg']:.4f} kg CO₂\n")
+                    f.write(f"  Equivalent to driving: {carbon['equivalent_car_miles']:.2f} miles\n")
+                    f.write(f"  Equivalent to tree absorption: {carbon['equivalent_tree_months']:.1f} tree-months\n\n")
+                else:
+                    f.write("POWER CONSUMPTION:\n")
+                    f.write("  Power monitoring not available\n\n")
+                
+                cpu_mem = summary['cpu_memory']
+                f.write("CPU & MEMORY:\n")
+                f.write(f"  Average CPU Usage: {cpu_mem['cpu_avg_percent']:.1f}%\n")
+                f.write(f"  Peak CPU Usage: {cpu_mem['cpu_max_percent']:.1f}%\n")
+                f.write(f"  Average Memory Usage: {cpu_mem['memory_avg_mb']:.1f} MB\n")
+                f.write(f"  Peak Memory Usage: {cpu_mem['memory_peak_mb']:.1f} MB\n\n")
+                
+                f.write("="*80 + "\n")
+                
+            print(f"✓ Human-readable summary saved to: {filepath}")
+        except Exception as e:
+            print(f"✗ Error saving human-readable summary: {e}")
+    
     def get_summary_stats(self):
-        """获取基线汇总统计"""
+        """获取汇总统计"""
         if not self.metrics_history:
             return None
         
+     
         valid_metrics = [m for m in self.metrics_history if m.get('elapsed_time') is not None]
+        
         if not valid_metrics:
             return None
         
-        # CPU指标统计
-        cpu_percents = [m.get('cpu_percent', 0) for m in valid_metrics]
-        cpu_deltas = [m.get('rl_cpu_time_delta', 0) for m in valid_metrics]
+        total_duration = self.metrics_history[-1]['elapsed_time']
         
-        # 内存指标统计
-        memory_rss = [m.get('memory_rss_mb', 0) for m in valid_metrics]
-        memory_increases = [m.get('rl_memory_increase_mb', 0) for m in valid_metrics]
+        # 提取各类指标
+        gpu_utils = [m.get('gpu_utilization', 0) for m in valid_metrics]
+        gpu_memory_peaks = [m.get('process_gpu_memory_mb', 0) for m in valid_metrics]
+        power_usages = [m.get('power_usage_w', 0) for m in valid_metrics]
+        cpu_usages = [m.get('process_cpu_percent', 0) for m in valid_metrics]
+        memory_usages = [m.get('process_memory_mb', 0) for m in valid_metrics]
+        
+        # PyTorch指标
+        torch_allocated = [m.get('torch_allocated_mb', 0) for m in valid_metrics]
+        torch_reserved = [m.get('torch_reserved_mb', 0) for m in valid_metrics]
+        torch_efficiency = [m.get('torch_memory_efficiency', 0) for m in valid_metrics]
         
         # RL特定指标
         episode_rewards = [m.get('reward') for m in valid_metrics if m.get('reward') is not None]
         
         summary = {
             'experiment_info': {
-                'total_duration_seconds': self.metrics_history[-1]['elapsed_time'],
+                'total_duration_seconds': total_duration,
                 'total_samples': len(valid_metrics),
-                'total_episodes': self.episode_count,
                 'start_time': self.metrics_history[0]['datetime'],
                 'end_time': self.metrics_history[-1]['datetime']
             },
-            'rl_performance': {
-                'avg_episode_duration_seconds': self.metrics_history[-1]['elapsed_time'] / max(self.episode_count, 1),
+            'rl_metrics': {
+                'total_episodes': self.episode_count,
+                'avg_episode_duration_seconds': total_duration / max(self.episode_count, 1),
                 'average_reward': sum(episode_rewards) / len(episode_rewards) if episode_rewards else 0,
                 'total_reward_sum': sum(episode_rewards) if episode_rewards else 0,
-                'avg_agent_inference_time_ms': sum(self.agent_inference_times) / len(self.agent_inference_times) if self.agent_inference_times else 0,
-                'max_agent_inference_time_ms': max(self.agent_inference_times) if self.agent_inference_times else 0
+                'avg_inference_time_ms': sum(self.inference_times) / len(self.inference_times) if self.inference_times else 0,
+                'max_inference_time_ms': max(self.inference_times) if self.inference_times else 0,
+                'inference_fps': 1000 / (sum(self.inference_times) / len(self.inference_times)) if self.inference_times else 0
             },
-            'baseline_cpu_analysis': {
-                'system_baseline_cpu_percent': self.baseline_cpu_percent,
-                'avg_cpu_percent': sum(cpu_percents) / len(cpu_percents) if cpu_percents else 0,
-                'max_cpu_percent': max(cpu_percents) if cpu_percents else 0,
-                'rl_cpu_overhead_seconds': max(cpu_deltas) if cpu_deltas else 0,
-                'avg_cpu_increase_percent': (sum(cpu_percents) / len(cpu_percents) - self.baseline_cpu_percent) if cpu_percents else 0
+            'torch_metrics': {
+                'max_allocated_mb': max(torch_allocated) if torch_allocated else 0,
+                'max_reserved_mb': max(torch_reserved) if torch_reserved else 0,
+                'avg_efficiency': sum(torch_efficiency) / len(torch_efficiency) if torch_efficiency else 0
             },
-            'baseline_memory_analysis': {
-                'system_baseline_memory_mb': self.baseline_memory_mb,
-                'avg_memory_mb': sum(memory_rss) / len(memory_rss) if memory_rss else 0,
-                'max_memory_mb': max(memory_rss) if memory_rss else 0,
-                'max_rl_memory_increase_mb': max(memory_increases) if memory_increases else 0,
-                'avg_rl_memory_increase_mb': sum(memory_increases) / len(memory_increases) if memory_increases else 0
+            'cpu_memory': {
+                'cpu_avg_percent': sum(cpu_usages) / len(cpu_usages) if cpu_usages else 0,
+                'cpu_max_percent': max(cpu_usages) if cpu_usages else 0,
+                'memory_avg_mb': sum(memory_usages) / len(memory_usages) if memory_usages else 0,
+                'memory_peak_mb': max(memory_usages) if memory_usages else 0
             }
         }
         
+        # 只有GPU监控成功时才添加GPU指标
+        if any(gpu_utils) and max(gpu_utils) > 0:
+            summary['gpu_metrics'] = {
+                'utilization': {
+                    'avg': sum(gpu_utils) / len(gpu_utils),
+                    'max': max(gpu_utils),
+                    'min': min(gpu_utils),
+                    'std': (sum((x - sum(gpu_utils)/len(gpu_utils))**2 for x in gpu_utils) / len(gpu_utils))**0.5 if len(gpu_utils) > 1 else 0
+                },
+                'memory_mb': {
+                    'peak': max(gpu_memory_peaks) if gpu_memory_peaks else 0,
+                    'avg': sum(gpu_memory_peaks) / len(gpu_memory_peaks) if gpu_memory_peaks else 0,
+                    'min': min(gpu_memory_peaks) if gpu_memory_peaks else 0
+                }
+            }
+        
+        # 只有功耗监控成功时才添加功耗指标
+        if any(power_usages) and max(power_usages) > 0:
+            summary['power_consumption'] = {
+                'avg_watts': sum(power_usages) / len(power_usages),
+                'max_watts': max(power_usages),
+                'total_energy_wh': sum(power_usages) * self.log_interval / 3600,
+                'total_energy_kwh': sum(power_usages) * self.log_interval / (3600 * 1000)
+            }
+            summary['carbon_footprint'] = self.carbon_tracker.get_equivalent_metrics()
+        else:
+            summary['power_consumption'] = {
+                'avg_watts': 0,
+                'max_watts': 0,
+                'total_energy_wh': 0,
+                'total_energy_kwh': 0
+            }
+            summary['carbon_footprint'] = {
+                'total_energy_kwh': 0,
+                'carbon_emission_kg': 0,
+                'equivalent_car_miles': 0,
+                'equivalent_tree_months': 0
+            }
+        
         return summary
     
-    def save_baseline_report(self, filepath):
-        """保存基线报告"""
+    def print_simple_summary(self):
+        """打印简单汇总到控制台"""
         summary = self.get_summary_stats()
         if not summary:
-            print("No baseline metrics data available")
-            return
-            
-        try:
-            with open(filepath, 'w') as f:
-                f.write("="*80 + "\n")
-                f.write("REINFORCEMENT LEARNING BASELINE RESOURCE USAGE REPORT\n")
-                f.write("="*80 + "\n\n")
-                
-                exp_info = summary['experiment_info']
-                rl_perf = summary['rl_performance']
-                cpu_info = summary['baseline_cpu_analysis']
-                mem_info = summary['baseline_memory_analysis']
-                
-                f.write(f"Experiment Duration: {exp_info['total_duration_seconds']:.1f} seconds ({exp_info['total_duration_seconds']/60:.1f} minutes)\n")
-                f.write(f"Total Episodes: {exp_info['total_episodes']}\n")
-                f.write(f"Average Episode Duration: {rl_perf['avg_episode_duration_seconds']:.2f}s\n")
-                f.write(f"Average Reward: {rl_perf['average_reward']:.2f}\n\n")
-                
-                f.write("RL AGENT PERFORMANCE:\n")
-                f.write(f"  Average Agent Inference Time: {rl_perf['avg_agent_inference_time_ms']:.2f}ms\n")
-                f.write(f"  Max Agent Inference Time: {rl_perf['max_agent_inference_time_ms']:.2f}ms\n\n")
-                
-                f.write("BASELINE CPU USAGE:\n")
-                f.write(f"  System Baseline CPU: {cpu_info['system_baseline_cpu_percent']:.1f}%\n")
-                f.write(f"  Average CPU Usage: {cpu_info['avg_cpu_percent']:.1f}%\n")
-                f.write(f"  Peak CPU Usage: {cpu_info['max_cpu_percent']:.1f}%\n")
-                f.write(f"  RL CPU Overhead: {cpu_info['rl_cpu_overhead_seconds']:.2f} seconds\n")
-                f.write(f"  Average CPU Increase: {cpu_info['avg_cpu_increase_percent']:.1f}%\n\n")
-                
-                f.write("BASELINE MEMORY USAGE:\n")
-                f.write(f"  System Baseline Memory: {mem_info['system_baseline_memory_mb']:.1f} MB\n")
-                f.write(f"  Average Memory Usage: {mem_info['avg_memory_mb']:.1f} MB\n")
-                f.write(f"  Peak Memory Usage: {mem_info['max_memory_mb']:.1f} MB\n")
-                f.write(f"  Max RL Memory Increase: {mem_info['max_rl_memory_increase_mb']:.1f} MB\n")
-                f.write(f"  Average RL Memory Increase: {mem_info['avg_rl_memory_increase_mb']:.1f} MB\n\n")
-                
-                f.write("NOTES:\n")
-                f.write("  - This is the BASELINE measurement without TodyNet\n")
-                f.write("  - Use this data to calculate TodyNet deployment overhead\n")
-                f.write("  - TodyNet overhead = (With TodyNet) - (This Baseline)\n\n")
-                
-                f.write("="*80 + "\n")
-                
-            print(f"✓ Baseline report saved to: {filepath}")
-        except Exception as e:
-            print(f"✗ Error saving baseline report: {e}")
-    
-    def print_baseline_summary(self):
-        """打印基线汇总"""
-        summary = self.get_summary_stats()
-        if not summary:
-            print("No baseline metrics data available")
+            print("No metrics data available for summary")
             return
             
         exp_info = summary['experiment_info']
-        rl_perf = summary['rl_performance']
-        cpu_info = summary['baseline_cpu_analysis']
-        mem_info = summary['baseline_memory_analysis']
+        rl_metrics = summary['rl_metrics']
+        torch_metrics = summary['torch_metrics']
         
         print("\n" + "="*70)
-        print("RL BASELINE RESOURCE USAGE SUMMARY")
+        print("RL RESOURCE USAGE SUMMARY")
         print("="*70)
-        print(f"Duration: {exp_info['total_duration_seconds']:.1f}s | Episodes: {exp_info['total_episodes']}")
-        print(f"Avg Reward: {rl_perf['average_reward']:.2f} | Agent Inference: {rl_perf['avg_agent_inference_time_ms']:.2f}ms")
-        print(f"CPU: {cpu_info['system_baseline_cpu_percent']:.1f}% → {cpu_info['avg_cpu_percent']:.1f}% (Δ{cpu_info['avg_cpu_increase_percent']:.1f}%)")
-        print(f"Memory: {mem_info['system_baseline_memory_mb']:.0f}MB → {mem_info['avg_memory_mb']:.0f}MB (Δ{mem_info['avg_rl_memory_increase_mb']:.1f}MB)")
+        print(f"Duration: {exp_info['total_duration_seconds']:.1f}s ({exp_info['total_duration_seconds']/60:.1f}min)")
+        print(f"Episodes: {rl_metrics['total_episodes']} | Avg Reward: {rl_metrics['average_reward']:.2f}")
+        print(f"Inference: {rl_metrics['avg_inference_time_ms']:.2f}ms avg | {rl_metrics['inference_fps']:.1f} FPS")
+        
+        if summary.get('gpu_metrics'):
+            gpu_metrics = summary['gpu_metrics']
+            print(f"GPU Utilization: {gpu_metrics['utilization']['avg']:.1f}% (avg) / {gpu_metrics['utilization']['max']:.1f}% (peak)")
+            print(f"GPU Memory: {gpu_metrics['memory_mb']['avg']:.0f}MB (avg) / {gpu_metrics['memory_mb']['peak']:.0f}MB (peak)")
+        else:
+            print("GPU System Monitoring: Failed")
+        
+        print(f"PyTorch GPU Memory: {torch_metrics['max_allocated_mb']:.0f}MB (peak) | Efficiency: {torch_metrics['avg_efficiency']:.3f}")
+        
+        if summary.get('power_consumption') and summary['power_consumption']['max_watts'] > 0:
+            power = summary['power_consumption']
+            carbon = summary['carbon_footprint']
+            print(f"Power: {power['avg_watts']:.1f}W (avg) | Energy: {power['total_energy_wh']:.2f}Wh")
+            print(f"Carbon: {carbon['carbon_emission_kg']:.4f}kg CO₂")
+        else:
+            print("Power Monitoring: Not available")
+            
         print("="*70)
+
+
+class CarbonTracker:
+    def __init__(self, region='CN'):
+        # 碳强度系数 (g CO2/kWh)
+        self.carbon_intensity = {
+            'US': 400, 'EU': 300, 'CN': 600, 'FR': 60, 'UK': 250
+        }
+        self.region = region
+        self.total_energy_kwh = 0
+        
+    def update_energy(self, power_watts, duration_seconds):
+        """更新能耗记录"""
+        energy_kwh = (power_watts * duration_seconds) / (1000 * 3600)
+        self.total_energy_kwh += energy_kwh
+        
+    def get_carbon_emission(self):
+        """计算总碳排放 (kg CO2)"""
+        carbon_g = self.total_energy_kwh * self.carbon_intensity[self.region]
+        return carbon_g / 1000  # 转换为kg
+        
+    def get_equivalent_metrics(self):
+        """转换为直观的等价指标"""
+        carbon_kg = self.get_carbon_emission()
+        # 等价对比
+        car_miles = carbon_kg / 0.404  # 每英里汽车排放约0.404kg CO2
+        tree_months = carbon_kg / (21.77 / 12)  # 一棵树一个月吸收约1.81kg CO2
+        
+        return {
+            'total_energy_kwh': self.total_energy_kwh,
+            'carbon_emission_kg': carbon_kg,
+            'equivalent_car_miles': car_miles,
+            'equivalent_tree_months': tree_months
+        }
+
 
 # 解析参数
-parser = argparse.ArgumentParser(description='RL Baseline Resource Analysis')
+parser = argparse.ArgumentParser(description='DRL Analysis based on TodyNet')
+parser.add_argument('-a', '--arch', metavar='ARCH', default='dyGIN2d')
 parser.add_argument('-d', '--dataset', metavar='DATASET', default='BipedalWalkerHCSA')
+parser.add_argument('-n', '--nsteps', type=int, default=20)
 parser.add_argument('-e', '--episodes', type=int, default=1000)
 parser.add_argument('--alg', type=str, default="Todynet", help='the algorithm used for training')
+parser.add_argument('--num_layers', type=int, default=3, help='the number of GNN layers')
+parser.add_argument('--groups', type=int, default=4, help='the number of time series groups (num_graphs)')
+parser.add_argument('--pool_ratio', type=float, default=0.2, help='the ratio of pooling for nodes')
+parser.add_argument('--kern_size', type=str, default="9,5,3", help='list of time conv kernel size for each layer')
+parser.add_argument('--in_dim', type=int, default=64, help='input dimensions of GNN stacks')
+parser.add_argument('--hidden_dim', type=int, default=128, help='hidden dimensions of GNN stacks')
+parser.add_argument('--out_dim', type=int, default=256, help='output dimensions of GNN stacks')
+# 新增监控参数
 parser.add_argument('--monitor-interval', default=10, type=int, help='monitoring interval in seconds')
+parser.add_argument('--gpu', default=0, type=int, help='GPU id to use')
 
+# CLI Parse
 args = parser.parse_args()
 
-# 初始化基线监控器
-monitor = BaselineResourceMonitor(log_interval=args.monitor_interval)
+monitor = ResourceMonitor(
+    gpu_id=args.gpu, 
+    log_interval=args.monitor_interval
+)
 
-# 设置系统基线
-print("Setting system baseline...")
-monitor.set_baseline()
-
-# 创建结果目录
+# make dir for exp result
 result_save_dir = './result/' + args.alg 
 if not os.path.exists(result_save_dir):
     os.makedirs(result_save_dir)
+result_save_dir = result_save_dir + '/' + args.dataset + '_' + str(args.nsteps) + '.csv'
 
-baseline_save_dir = './result/' + args.alg + '/baseline/'
-if not os.path.exists(baseline_save_dir):
-    os.makedirs(baseline_save_dir)
 
-baseline_metrics_file = baseline_save_dir + args.dataset + '_baseline_metrics.json'
-baseline_report_file = baseline_save_dir + args.dataset + '_baseline_report.txt'
-result_save_dir = result_save_dir + '/' + args.dataset + '_baseline.csv'
+monitor_save_dir = './result/' + args.alg + '/monitoring/'
+if not os.path.exists(monitor_save_dir):
+    os.makedirs(monitor_save_dir)
 
-# 准备环境和智能体
+metrics_file = monitor_save_dir + args.dataset + '_' + str(args.nsteps) + '_metrics.json'
+summary_file = monitor_save_dir + args.dataset + '_' + str(args.nsteps) + '_summary.json'
+readable_summary_file = monitor_save_dir + args.dataset + '_' + str(args.nsteps) + '_summary.txt'
+
+# prepare for agent and env
+model_dir = './model/' + args.alg + '/' + args.dataset + '_' + str(args.nsteps) + '.pth'
 if args.dataset[-3:] == "SAR":
     input_tag = "SAR"
     args.dataset = args.dataset[:-3]
@@ -390,20 +699,45 @@ else:
 env, model, num_nodes, alg_tag = prepare_agent(args.dataset, input_tag)
 print(f"The dim of features: {num_nodes}\nThe alg used for training agent: {alg_tag}")
 
-# 开始监控
-monitor.start_background_monitoring()
-monitor.collect_metrics(phase='rl_environment_loaded')
 
-df = pd.DataFrame(columns=['Episode', 'Reward', 'Steps', 'T', 'Agent_Time_ms'])
+monitor.start_background_monitoring()
+monitor.collect_metrics(phase='initialization')
+
+df = pd.DataFrame(columns=['Episode', 'Reward', 'Pre', 'True', 'Probabilities', 'Steps', 'T'])
+
+args.kern_size = [ int(l) for l in args.kern_size.split(",") ]
+    
+seq_length = args.nsteps
+
+# Model initialisation
+todeynet = GNNStack(gnn_model_type=args.arch, 
+                    num_layers=args.num_layers, 
+                    groups=args.groups, 
+                    pool_ratio=args.pool_ratio, 
+                    kern_size=args.kern_size, 
+                    in_dim=args.in_dim, 
+                    hidden_dim=args.hidden_dim, 
+                    out_dim=args.out_dim, 
+                    seq_len=seq_length, 
+                    num_nodes=num_nodes, 
+                    num_classes=2)
+
+# load failure monitoring model
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+todeynet.load_state_dict(torch.load(model_dir, map_location='cpu'))
+todeynet.to(device)
+# todeynet.to('cpu')
+todeynet.eval()
+
+monitor.collect_metrics(phase='model_loaded')
 
 check_episode = args.episodes
 
-print(f"🚀 Starting RL BASELINE experiment with {check_episode} episodes...")
+# Experiment initialisation
+pre_label = np.zeros(check_episode)
+true_label = np.zeros(check_episode)
 
-# 定义智能体推理函数
-def agent_inference(obs):
-    action, _ = model.predict(obs, deterministic=True)
-    return action
+print(f"🚀 Starting RL experiment with {check_episode} episodes...")
 
 # 主要实验循环
 for i in range(check_episode):
@@ -414,63 +748,127 @@ for i in range(check_episode):
     done = False
     truncated = False
     total_reward = 0
+    record = deque(maxlen=seq_length)
     cnt = 0
+    prob = -1
+    steps = 0
     
-    episode_agent_times = []
+    is_warning = False
+    last_warning_start = 0
+    current_warning_start = 0
+    probs = []
+    
+    step_inference_times = []
+    agent_times = []
+    todynet_times = []
     
     while not done and not truncated:
-        # 使用监控器测量智能体推理开销
-        action, inference_metrics = monitor.measure_agent_inference(agent_inference, obs)
-        episode_agent_times.append(inference_metrics['agent_inference_time_ms'])
+        # RL agent推理时间
+        agent_start = time.time()
+        action, _ = model.predict(obs, deterministic=True)
+        agent_time = (time.time() - agent_start) * 1000  # ms
+        agent_times.append(agent_time)
         
+        state = torch.as_tensor(obs)
+        actions = torch.as_tensor(action)
         obs, reward, done, truncated, info = env.step(action)
         total_reward += reward
+        rewards = torch.as_tensor([reward], dtype=torch.float32)
+
+        if input_tag == 'SAR':
+            record.append(torch.cat([state.view(1, -1)[:, :45].float(), actions.view(1, -1).float(), rewards.view(1, -1).float()], dim=1))
+        elif input_tag == 'SA':
+            record.append(torch.cat([state.view(1, -1)[:, :45].float(), actions.view(1, -1).float()], dim=1))
+        else:
+            record.append(torch.cat([state.view(1, -1)[:, :45].float()], dim=1))
+
         cnt += 1
+        
+        if len(record) == args.nsteps:
+            # TodyNet推理时间
+
+            obs_input = torch.cat(list(record), dim=0).unsqueeze(0)
+            obs_input = obs_input.permute(0, 2, 1).unsqueeze(0).float().to(device)
+            todynet_start = time.time()
+            a = todeynet(obs_input)
+            todynet_time = (time.time() - todynet_start) * 1000  # ms
+            todynet_times.append(todynet_time)
+            step_inference_times.append(agent_time + todynet_time)
+            
+            probs.append(torch.softmax(a, dim=1)[0][1].item())
+            label = torch.argmax(a, dim=1)
+            
+            if label.item() == 1:
+                if not is_warning:
+                    current_warning_start = cnt
+                    is_warning = True
+                pre_label[i] = 1
+                prob = torch.softmax(a, dim=1)[0][1].item()
+            else:
+                if is_warning:
+                    last_warning_start = current_warning_start
+                    is_warning = False
+    
+    if is_warning:
+        last_warning_start = current_warning_start
+    
+    if prob == -1 and len(record) == 20:
+        obs_input = torch.cat(list(record), dim=0).unsqueeze(0)
+        obs_input = obs_input.permute(0, 2, 1).unsqueeze(0).float().to(device)
+        a = todeynet(obs_input)
+        prob = torch.softmax(a, dim=1)[0][1].item()
+
+    if args.dataset == 'BipedalWalkerHC':
+        if total_reward < 285:
+            true_label[i] = 1
+            if pre_label[i] == 1 and last_warning_start > 0:
+                steps = cnt - last_warning_start
+    else:   
+        if cnt < 1000:
+            true_label[i] = 1
+            if pre_label[i] == 1 and last_warning_start > 0:
+                steps = cnt - last_warning_start
+    
+    if steps == 0:
+        steps = cnt
     
     episode_duration = time.time() - episode_start_time
     t_per_step = episode_duration / cnt
-    avg_agent_time = sum(episode_agent_times) / len(episode_agent_times) if episode_agent_times else 0
+    avg_inference_time = sum(step_inference_times) / len(step_inference_times) if step_inference_times else 0
     
     # 记录episode完成指标
-    custom_data = {
-        'avg_agent_inference_time_ms': avg_agent_time,
-        'total_agent_inferences': len(episode_agent_times)
-    }
-    
     monitor.collect_metrics(
         episode=i, 
         reward=total_reward, 
         steps=cnt, 
         phase='episode_complete',
-        custom_data=custom_data
+        inference_time=avg_inference_time
     )
+    avg_agent_time = sum(agent_times) / len(agent_times) if agent_times else 0
+    avg_todynet_time = sum(todynet_times) / len(todynet_times) if todynet_times else 0
     
-    print(f"Episode: {i:4d}\tReward: {total_reward:7.2f}\tSteps: {cnt:4d}\tT: {t_per_step:.4f}\tAgent: {avg_agent_time:.2f}ms")
+    print(f"Episode: {i:4d}\tReward: {total_reward:7.2f}\tPre: {pre_label[i]:2.0f}\tTrue: {true_label[i]:2.0f}\tProb: {prob:.4f}\tSteps: {steps:4d}\tT: {t_per_step:.4f}\tInf: {avg_inference_time:.2f}ms\tagent_time: {avg_agent_time}\ttodynet_time: {avg_todynet_time}")
 
-    df.loc[len(df)] = [i, total_reward, cnt, t_per_step, avg_agent_time]
+    df.loc[len(df)] = [i, total_reward, pre_label[i], true_label[i], prob, steps, t_per_step]
     
-    # 每100个episode记录一次
+    # 每100个episode记录一次资源状态
     if i % 100 == 0 and i > 0:
         monitor.collect_metrics(episode=i, phase=f'checkpoint_{i}')
 
-# 停止监控
 monitor.stop_background_monitoring()
 
-# 保存结果
 df.to_csv(result_save_dir, index=False)
-print(f"✓ Baseline results saved to: {result_save_dir}")
+print(f"✓ Results saved to: {result_save_dir}")
 
-# 打印和保存基线汇总
-monitor.print_baseline_summary()
+monitor.print_simple_summary()
 
-# 保存详细数据
-with open(baseline_metrics_file, 'w') as f:
-    json.dump(convert_to_serializable(monitor.metrics_history), f, indent=2)
+monitor.save_metrics(metrics_file)
+monitor.save_summary_report(summary_file)
+monitor.save_human_readable_summary(readable_summary_file)
 
-monitor.save_baseline_report(baseline_report_file)
-
-print(f"\n🎯 Baseline experiment completed!")
+print(f"\n🎯 Experiment completed!")
 print(f"📊 Episodes: {check_episode}")
 print(f"📁 Results: {result_save_dir}")
-print(f"📈 Baseline Analysis: {baseline_report_file}")
-print(f"\n💡 Next step: Run with TodyNet and compare!")
+print(f"📈 Monitoring: {monitor_save_dir}")
+
+probs = np.array(probs)

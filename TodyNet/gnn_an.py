@@ -12,9 +12,6 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import seaborn as sns
 from matplotlib.patches import FancyBboxPatch
-import plotly.graph_objects as go
-import plotly.express as px
-from plotly.subplots import make_subplots
 
 warnings.filterwarnings("ignore")
 
@@ -42,7 +39,7 @@ if not os.path.exists(result_save_dir):
 result_save_dir = result_save_dir + '/' + args.dataset + '_' + str(args.nsteps) + '.csv'
 
 # prepare for agent and env
-model_dir = './model_best/' + args.alg + '/' + args.dataset + '_' + str(args.nsteps) + '.pth'
+model_dir = './model/' + args.alg + '/' + args.dataset + '_' + str(args.nsteps) + '.pth'
 if args.dataset[-3:] == "SAR":
     input_tag = "SAR"
     args.dataset = args.dataset[:-3]
@@ -86,16 +83,16 @@ X = X_train[0].float().unsqueeze(0)
 label = Y_train[5].long()
 print(X.shape, label)
 
-# 加载训练后的模型参数
+# Load trained model parameters
 print("Loading trained model parameters...")
 todeynet.load_state_dict(torch.load(model_dir, map_location='cuda:0'))
 
-# 获取训练后的邻接矩阵
+# Get adjacency matrices after training
 print("Getting adjacency matrices after training...")
 _ = todeynet(X)
 learned_adj_after = todeynet.get_learned_graph().clone()
 
-# 打印调试信息
+# Print debug information
 print(f"Sequence length: {seq_length}")
 print(f"Number of time slices (groups): {args.groups}")
 print(f"Steps per time slice: {seq_length // args.groups}")
@@ -103,27 +100,27 @@ print(f"After training adjacency matrix shape: {learned_adj_after.shape}")
 
 def plot_trained_network(adj_after, save_path, threshold=0.1):
     """
-    绘制训练后的所有时间切片 (1x4 布局)
+    Plot all time slices after training (1x4 layout)
     
     Args:
-        adj_after: 训练后的邻接矩阵
-        save_path: 保存路径
-        threshold: 显示连接的阈值
+        adj_after: Adjacency matrix after training
+        save_path: Save path
+        threshold: Threshold for displaying connections
     """
     if torch.is_tensor(adj_after):
         adj_after = adj_after.cpu().detach().numpy()
     
     num_slices = len(adj_after)
     
-    # 创建 1x4 的子图布局
+    # Create 1x4 subplot layout
     fig, axes = plt.subplots(1, 4, figsize=(20, 5))
     
     for i in range(num_slices):
-        # 处理训练后的数据
+        # Process data after training
         adj_matrix_after = adj_after[i]
         num_nodes = adj_matrix_after.shape[0]
         
-        # 创建训练后的图
+        # Create graph after training
         G_after = nx.Graph()
         for node in range(num_nodes):
             G_after.add_node(node)
@@ -134,10 +131,10 @@ def plot_trained_network(adj_after, save_path, threshold=0.1):
                 if abs(weight) > threshold:
                     G_after.add_edge(x, y, weight=weight)
         
-        # 使用相同的布局种子确保节点位置一致
+        # Use same layout seed to ensure consistent node positions
         pos = nx.spring_layout(G_after, k=1.5, iterations=50, seed=42)
         
-        # 绘制训练后的图
+        # Draw graph after training
         for edge in G_after.edges(data=True):
             x, y, data = edge
             weight = data['weight']
@@ -159,19 +156,19 @@ def plot_trained_network(adj_after, save_path, threshold=0.1):
                                font_size=6, 
                                font_weight='bold')
         
-        # 计算时间范围
+        # Calculate time range
         steps_per_slice = seq_length // args.groups
         start_step = i * steps_per_slice + 1
         end_step = (i + 1) * steps_per_slice
         
-        # 设置标题
+        # Set title
         axes[i].set_title(f'Time Slice {i+1} (Steps {start_step}-{end_step})\n'
                          f'{len(G_after.edges())} connections', 
                          fontweight='bold', fontsize=15)
         
         axes[i].axis('off')
     
-    # 添加整体图例
+    # Add overall legend
     green_line = plt.Line2D([0], [0], color='green', linewidth=3, label='Positive Correlation')
     red_line = plt.Line2D([0], [0], color='red', linewidth=3, label='Negative Correlation')
     
@@ -186,34 +183,34 @@ def plot_trained_network(adj_after, save_path, threshold=0.1):
 
 def plot_trained_heatmap(adj_after, save_path):
     """
-    绘制训练后的热力图 (1x4 布局)
+    Plot heatmap after training (1x4 layout)
     """
     if torch.is_tensor(adj_after):
         adj_after = adj_after.cpu().detach().numpy()
     
     num_slices = len(adj_after)
     
-    # 创建 1x4 的子图布局
+    # Create 1x4 subplot layout
     fig, axes = plt.subplots(1, 4, figsize=(20, 5))
     
-    # 计算全局的最小最大值以保持一致的颜色刻度
+    # Calculate global min and max values to maintain consistent color scale
     vmin = adj_after.min()
     vmax = adj_after.max()
     
     for i in range(num_slices):
-        # 计算时间范围
+        # Calculate time range
         steps_per_slice = seq_length // args.groups
         start_step = i * steps_per_slice + 1
         end_step = (i + 1) * steps_per_slice
         
-        # 训练后的热力图
+        # Heatmap after training
         im = axes[i].imshow(adj_after[i], cmap='RdBu_r', vmin=vmin, vmax=vmax)
         axes[i].set_title(f'Time Slice {i+1} (Steps {start_step}-{end_step})', 
                          fontweight='bold', fontsize=12)
         axes[i].set_xlabel('Target Node')
         axes[i].set_ylabel('Source Node')
     
-    # 添加颜色条
+    # Add colorbar
     fig.colorbar(im, ax=axes, shrink=0.6, label='Connection Strength')
     
     plt.tight_layout()
@@ -224,7 +221,7 @@ def plot_trained_heatmap(adj_after, save_path):
 
 def analyze_trained_graph(adj_after):
     """
-    分析训练后图结构的统计信息
+    Analyze statistical information of graph structure after training
     """
     if torch.is_tensor(adj_after):
         adj_after = adj_after.cpu().detach().numpy()
@@ -232,16 +229,16 @@ def analyze_trained_graph(adj_after):
     analysis = []
     
     for i in range(len(adj_after)):
-        # 统计指标
+        # Statistical metrics
         mean_strength = np.mean(np.abs(adj_after[i]))
         std_strength = np.std(adj_after[i])
         max_strength = np.max(np.abs(adj_after[i]))
         
-        # 计算连接数
+        # Calculate number of connections
         threshold = 0.1
-        connections = np.sum(np.abs(adj_after[i]) > threshold) // 2  # 无向图，除以2
+        connections = np.sum(np.abs(adj_after[i]) > threshold) // 2  # Undirected graph, divide by 2
         
-        # 正负连接数
+        # Number of positive and negative connections
         positive_connections = np.sum(adj_after[i] > threshold) // 2
         negative_connections = np.sum(adj_after[i] < -threshold) // 2
         
@@ -266,26 +263,26 @@ def analyze_trained_graph(adj_after):
     
     return analysis
 
-# 主要可视化代码
+# Main visualization code
 if len(learned_adj_after.shape) == 3:
     print("Found multiple time slices in trained model")
     
-    # 绘制训练后的网络图
+    # Plot trained network graph
     print("\nGenerating trained network visualization...")
     plot_trained_network(
         adj_after=learned_adj_after,
-        save_path='/home/jc/CY/FMMDP/TodyNet/log/trained_network_visualization.png',
+        save_path='./Todynet/log/trained_network_visualization.png',
         threshold=0.1
     )
     
-    # 绘制训练后的热力图
+    # Plot trained network heatmap
     print("\nGenerating trained network heatmap...")
     plot_trained_heatmap(
         adj_after=learned_adj_after,
-        save_path='/home/jc/CY/FMMDP/TodyNet/log/trained_network_heatmap.png'
+        save_path='./Todynet/log/trained_network_heatmap.png'
     )
     
-    # 分析训练后的图结构
+    # Analyze trained graph structure
     print("\nAnalyzing trained graph structure...")
     analysis = analyze_trained_graph(learned_adj_after)
     

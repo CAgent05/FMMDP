@@ -1,0 +1,37 @@
+epochs 10, lr 0.0001, weight_decay 0.0001
+num_nodes 28, seq_length 20, num_classes 2
+Model: total_params 494031, trainable_params 494031, size 1.88MB
+date exp, gpu 0, archdyGIN2d
+TRAIN, epoch 0, loss 0.6600875644683838, acc tensor([68.9500], device='cuda:0')
+VAL, loss 0.6815020875930786, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 1, loss 0.6250500688552857, acc tensor([68.9500], device='cuda:0')
+VAL, loss 0.6750476889610291, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 2, loss 0.5731184692382812, acc tensor([72.9500], device='cuda:0')
+VAL, loss 0.6614180426597596, acc tensor([68.3000], device='cuda:0')
+TRAIN, epoch 3, loss 0.5003029320240021, acc tensor([90.6000], device='cuda:0')
+VAL, loss 0.6284201745986938, acc tensor([74.2000], device='cuda:0')
+TRAIN, epoch 4, loss 0.4021311967372894, acc tensor([98.2500], device='cuda:0')
+VAL, loss 0.5505300970077515, acc tensor([95.7000], device='cuda:0')
+TRAIN, epoch 5, loss 0.29711037516593936, acc tensor([99.4500], device='cuda:0')
+VAL, loss 0.41300836992263795, acc tensor([98.8000], device='cuda:0')
+TRAIN, epoch 6, loss 0.20987272381782532, acc tensor([99.4000], device='cuda:0')
+VAL, loss 0.25777007222175596, acc tensor([99.1000], device='cuda:0')
+TRAIN, epoch 7, loss 0.1492383590936661, acc tensor([99.4500], device='cuda:0')
+VAL, loss 0.14568174374103546, acc tensor([99.3000], device='cuda:0')
+TRAIN, epoch 8, loss 0.1117596246600151, acc tensor([99.4000], device='cuda:0')
+VAL, loss 0.08689302623271943, acc tensor([99.3000], device='cuda:0')
+TRAIN, epoch 9, loss 0.0884909741282463, acc tensor([99.6000], device='cuda:0')
+VAL, loss 0.06045663452148437, acc tensor([99.4000], device='cuda:0')
+
+
+ * BEST_ACC: 99.4000015258789
+ * TIME: Time 58.667 (58.667)
+ * RESOURCE SUMMARY:
+   - Total Duration: 59.56s
+   - Avg GPU Utilization: 55.5%
+   - Peak GPU Memory: 0.0MB
+   - PyTorch Peak GPU Memory: 56.1MB
+   - Total Energy: 3.43Wh
+   - Carbon Emission: 0.0004kg CO2
+   - Equivalent Car Miles: 0.00
+

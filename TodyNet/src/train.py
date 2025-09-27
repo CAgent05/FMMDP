@@ -53,6 +53,8 @@ parser.add_argument('--gpu', default=0, type=int,
                     help='GPU id to use.')
 parser.add_argument('--tag', default='exp', type=str,
                     help='experiment tag')
+parser.add_argument('--use_benchmark', action='store_true', default=False,
+                    help='use cudnn.benchmark or not')
 
 
 
@@ -208,10 +210,8 @@ def train(train_loader, model, criterion, optimizer, lr_scheduler, args):
     for count, (data, label) in enumerate(train_loader):
 
         # data in cuda
-        # data = data.cuda(args.gpu).type(torch.float)
-        # label = label.cuda(args.gpu).type(torch.long)
-        data = data.type(torch.float)
-        label = label.type(torch.long)
+        data = data.cuda(args.gpu).type(torch.float)
+        label = label.cuda(args.gpu).type(torch.long)
         
         # compute output
         output = model(data)
@@ -242,12 +242,11 @@ def validate(val_loader, model, criterion, args):
 
     with torch.no_grad():
         for count, (data, label) in enumerate(val_loader):
-            # if args.gpu is not None:
-            #     data = data.cuda(args.gpu, non_blocking=True).type(torch.float)
-            # if torch.cuda.is_available():
-            #     label = label.cuda(args.gpu, non_blocking=True).type(torch.long)
-            data = data.type(torch.float)
-            label = label.type(torch.long)
+            if args.gpu is not None:
+                data = data.cuda(args.gpu, non_blocking=True).type(torch.float)
+            if torch.cuda.is_available():
+                label = label.cuda(args.gpu, non_blocking=True).type(torch.long)
+
             # compute output
             output = model(data)
 

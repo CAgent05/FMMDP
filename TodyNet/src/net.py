@@ -73,6 +73,7 @@ class GNNStack(nn.Module):
         self.linear = nn.Linear(heads * out_dim, num_classes)
         
         self.features = None
+        self.learned_adj = None
         
         self.reset_parameters()
         
@@ -102,6 +103,7 @@ class GNNStack(nn.Module):
             x = inputs
             
         adj = self.g_constr(x.device)
+        self.learned_adj = adj
               
         for tconv, gconv, bn, pool in zip(self.tconvs, self.gconvs, self.bns, self.diffpool):
             
@@ -121,3 +123,6 @@ class GNNStack(nn.Module):
     
     def get_features(self):
         return self.features
+
+    def get_learned_graph(self):
+        return self.learned_adj

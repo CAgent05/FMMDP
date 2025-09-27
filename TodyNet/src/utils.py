@@ -55,10 +55,10 @@ def get_default_train_val_test_loader(args):
     dsid = args.dataset + '_' + str(args.nsteps)
 
     # get dataset from .pt
-    data_train = torch.load(f'./data/Train/{dsid}/X_train.pt', map_location='cpu')
-    data_val = torch.load(f'./data/Train/{dsid}/X_valid.pt', map_location='cpu')
-    label_train = torch.load(f'./data/Train/{dsid}/y_train.pt', map_location='cpu')
-    label_val = torch.load(f'./data/Train/{dsid}/y_valid.pt', map_location='cpu')
+    data_train = torch.load(f'./data/Train/{dsid}/X_train.pt' )
+    data_val = torch.load(f'./data/Train/{dsid}/X_valid.pt' )
+    label_train = torch.load(f'./data/Train/{dsid}/y_train.pt' )
+    label_val = torch.load(f'./data/Train/{dsid}/y_valid.pt' )
     
 
     # init [num_variables, seq_length, num_classes]

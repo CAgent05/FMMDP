@@ -38,7 +38,7 @@ hd_max_values = []
 hrl_mean_values = []
 hrl_max_values = []
 
-for i in range(100):
+for i in range(3000):
     obs, _ = env.reset(seed=i)
     done, truncated = False, False
     cnt = 0
